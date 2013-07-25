@@ -1,6 +1,7 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 [Bb]in/
 [Oo]bj/
+Munchies 1.0 Juice/
 
 # mstest test results
 TestResults
