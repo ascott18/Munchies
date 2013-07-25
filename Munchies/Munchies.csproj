@@ -98,12 +98,6 @@
       <HintPath>.\irrKlang.NET4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="SettingsSerializer">
-      <HintPath>..\..\SettingsSerializer\SettingsSerializer\bin\Release\SettingsSerializer.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleCommandManager">
-      <HintPath>..\..\SimpleCommandManager\SimpleCommandManager\bin\Release\SimpleCommandManager.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -741,6 +735,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="Munchies.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SettingsSerializer\SettingsSerializer.csproj">
+      <Project>{c2a26d49-ad19-463a-8e36-8f9db2fe31fb}</Project>
+      <Name>SettingsSerializer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleCommandManager\SimpleCommandManager.csproj">
+      <Project>{1f79aa76-713b-47f5-9683-e1c64827638d}</Project>
+      <Name>SimpleCommandManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
