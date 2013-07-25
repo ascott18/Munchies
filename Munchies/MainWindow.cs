@@ -514,6 +514,9 @@ namespace Munchies
 
         #endregion
 
+        /// <summary>
+        /// Implementation of CommandManager from the SimpleCommandManager project
+        /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (Program.CommandManager.ProcessCmdKey(ref msg, keyData))
