@@ -358,6 +358,10 @@ namespace Munchies
 
             InitializeCommands();
 
+            Size windowPadding = Size.Subtract(Size, ClientSize);
+            MinimumSize = Size.Add(windowPadding, Program.ContentSizeSetting);
+            Size = MinimumSize;
+
             ContentContainer = ContentContainers.First(c => c is TitleScreenContainer);
             
             Program.Settings.DeclareDefault("MusicEnabled", false);
@@ -402,8 +406,13 @@ namespace Munchies
         public void NewGame()
         {
             GameContainer container = (GameContainer)ContentContainers.First(c => c is GameContainer);
-            
-            CurrentGame = new Game(container, GameMode.GameModeFromSettings);
+
+            GameMode mode = GameMode.GameModeFromSettings;
+
+            Size windowPadding = Size.Subtract(Size, ClientSize);
+            MinimumSize = Size.Add(windowPadding, mode.ContainerSize);
+
+            CurrentGame = new Game(container, mode);
 
             container.Game = CurrentGame;
 
