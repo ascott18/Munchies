@@ -188,12 +188,12 @@ namespace Munchies
                 Treat spawn;
 
                 switch (SpawnRandomizer.PickSpawn(new int[] {
-                    65, // 0 Desert
-                    LevelSprites.OfType<Peas>().Any() ? 0 : 30 + Math.Max(0, 30 - Game.Melvin.Peas * 3), // 1 Peas (spawn chance increased below 5 peas)
+                    60, // 0 Desert
+                    LevelSprites.OfType<Peas>().Any() ? 0 : 30 + Math.Max(0, 30 - Game.Melvin.Peas * 3), // 1 Peas (spawn chance increased below 10 peas)
                     Game.Melvin.ButterStage > 0 || LevelSprites.OfType<Butter>().Any() ? 0 : 15, // 2 Butter
                     Game.Melvin.Salt || LevelSprites.OfType<Salt>().Any() ? 0 : 10, // 3 Salt
                     Game.Melvin.Pepper || LevelSprites.OfType<Pepper>().Any() ? 0 : 10, // 4 Pepper
-                    3,  // 5 Coffee
+                    4,  // 5 Coffee
                 }))
                 {
                     case 0:
