@@ -130,11 +130,12 @@ namespace Munchies
 
             if (Location.X < 0)
                 collisions |= EdgeCollisionTypes.Left;
+            else if (Location.X > (float)Game.Size.Width - Size.Width)
+                collisions |= EdgeCollisionTypes.Right;
+
             if (Location.Y < 0)
                 collisions |= EdgeCollisionTypes.Top;
-            if (Location.X > (float)Game.Size.Width - Size.Width)
-                collisions |= EdgeCollisionTypes.Right;
-            if (Location.Y > (float)Game.Size.Height - Size.Height)
+            else if (Location.Y > (float)Game.Size.Height - Size.Height)
                 collisions |= EdgeCollisionTypes.Bottom;
 
             return collisions;
@@ -376,7 +377,7 @@ namespace Munchies
         /// <summary>
         /// Preloads the image files that the sprite will use. Call SetImage(string fileName) to load one of the images.
         /// </summary>
-        /// <param name="fileNames">A string of the file name to load.
+        /// <param name="fileName">A string of the file name to load.
         /// 
         /// The file name should just be the name of the file as it exists in Munchies.Images, minus extension. (E.G. "MelvinS")</param>
         public void PreloadImages(string fileName)
