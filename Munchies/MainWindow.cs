@@ -21,6 +21,7 @@ namespace Munchies
     
     public partial class MainWindow : Form
     {
+
         # region Content Container Management
 
         private List<ContentContainer> ContentContainers = new List<ContentContainer>()
@@ -363,12 +364,22 @@ namespace Munchies
             Size = MinimumSize;
 
             ContentContainer = ContentContainers.First(c => c is TitleScreenContainer);
-            
+
             Program.Settings.DeclareDefault("MusicEnabled", false);
             Program.Settings.DeclareDefault("FoodSpeed", Food.FoodSpeed.Fast);
 
+            Program.Settings.DeclareDefault("Maximized", false);
+            bool Maximized = (bool)Program.Settings.GetSetting("Maximized");
+            WindowState = Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
+            FormClosing += MainWindow_FormClosing;
+            
             // Initialize the audio manager
             AudioManager.Initialize(this);
+        }
+
+        void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.Settings.SetSetting("Maximized", WindowState == FormWindowState.Maximized);
         }
 
         #endregion
@@ -468,6 +479,8 @@ namespace Munchies
 
                 ShowScores(score);
             }
+
+            menuStrip1.Refresh();
         }
 
         private void Form1_Deactivate(object sender, EventArgs e)

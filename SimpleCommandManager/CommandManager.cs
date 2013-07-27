@@ -45,8 +45,25 @@ namespace AndrewScott.SimpleCommandManager
             get { return enabled; }
             set
             {
-                if (MenuItem != null)
-                    MenuItem.Paint += MenuItem_Paint_Enabled;
+                ToolStripMenuItem item = MenuItem;
+
+                if (item != null)
+                {
+                    if (item.OwnerItem is ToolStripMenuItem)
+                    {
+                        var owner = (ToolStripMenuItem)item.OwnerItem;
+                        owner.Paint += MenuItem_Paint_Enabled;
+                        owner.VisibleChanged += MenuItem_Paint_Enabled;
+                    }
+
+                    if (item.Owner is ToolStrip)
+                    {
+                        var owner = (ToolStrip)item.Owner;
+                        owner.Paint += MenuItem_Paint_Enabled;
+                        owner.VisibleChanged += MenuItem_Paint_Enabled;
+                    }
+                }
+
 
                 enabled = value;
             }
