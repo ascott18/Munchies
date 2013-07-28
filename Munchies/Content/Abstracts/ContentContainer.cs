@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Munchies
 {
-    public partial class ContentContainer : UserControl
+    public abstract partial class ContentContainer : UserControl
     {
         public ContentContainer()
         {
