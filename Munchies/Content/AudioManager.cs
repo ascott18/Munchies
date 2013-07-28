@@ -132,6 +132,7 @@ namespace Munchies
 
                 Item.Size = new System.Drawing.Size(91, 22);
                 Item.Text = i.ToString();
+                Item.ShortcutKeyDisplayString = "Ctrl+" + i;
 
                 window.soundToolStripMenuItem.DropDownItems.Add(Item);
 
@@ -143,13 +144,18 @@ namespace Munchies
                     Program.Settings.SetSetting("SoundVolume", thisSoundLevel);
                     Volume = (float)thisSoundLevel / (float)VolumeLevelMax;
                     GetSound("Munchies.Resources.Sounds.exitSound.ogg").Play();
-                }, Item)
-                {
+                },
+                    Keys.Control | Keys.D0 + i,
+                    Item
+                ) {
                     Checked = () => (int)Program.Settings.GetSetting("SoundVolume") == thisSoundLevel
                 };
 
                 Program.CommandManager.Add(cmd);
             }
+
+            // Special handling for the first volume setting.
+            window.soundToolStripMenuItem.DropDownItems[0].Text = "Off";
 
             //Volume = (float)(int)Program.Settings.GetSetting("SoundVolume") / (float)VolumeLevelMax;
 
