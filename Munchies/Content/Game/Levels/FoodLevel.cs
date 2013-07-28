@@ -193,7 +193,7 @@ namespace Munchies
                     Game.Melvin.ButterStage > 0 || LevelSprites.OfType<Butter>().Any() ? 0 : 15, // 2 Butter
                     Game.Melvin.Salt || LevelSprites.OfType<Salt>().Any() ? 0 : 10, // 3 Salt
                     Game.Melvin.Pepper || LevelSprites.OfType<Pepper>().Any() ? 0 : 10, // 4 Pepper
-                    4,  // 5 Coffee
+                    3,  // 5 Coffee
                 }))
                 {
                     case 0:

@@ -22,6 +22,8 @@ namespace Munchies
 
         public override void Update(double gameTime, double elapsedTime)
         {
+            base.Update(gameTime, elapsedTime);
+
             int state = AnimationState.GetState(gameTime, NumCoffeeStates, 20) + 1;
 
             ImageName = string.Format("Coffee{0}", state);
