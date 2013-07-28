@@ -157,10 +157,8 @@ namespace Munchies
             // Special handling for the first volume setting.
             window.soundToolStripMenuItem.DropDownItems[0].Text = "Off";
 
-            //Volume = (float)(int)Program.Settings.GetSetting("SoundVolume") / (float)VolumeLevelMax;
-
-
-
+            Volume = (float)(int)Program.Settings.GetSetting("SoundVolume") / (float)VolumeLevelMax;
+            
 
             PreloadAllSounds();
         }
