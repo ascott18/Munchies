@@ -166,12 +166,21 @@ namespace Munchies
         {
             EdgeCollisionTypes collisions = TestEdgeCollision();
 
-            if (collisions.HasFlag(EdgeCollisionTypes.Top) || collisions.HasFlag(EdgeCollisionTypes.Bottom))
-                Velocity.Y = -Velocity.Y;
-            if (collisions.HasFlag(EdgeCollisionTypes.Left) || collisions.HasFlag(EdgeCollisionTypes.Right))
-                Velocity.X = -Velocity.X;
+            bool bind = false;
 
-            Update_BindWithinGame();
+            if (collisions.HasFlag(EdgeCollisionTypes.Top) || collisions.HasFlag(EdgeCollisionTypes.Bottom))
+            {
+                Velocity.Y = -Velocity.Y;
+                bind = true;
+            }
+            if (collisions.HasFlag(EdgeCollisionTypes.Left) || collisions.HasFlag(EdgeCollisionTypes.Right))
+            {
+                Velocity.X = -Velocity.X;
+                bind = true;
+            }
+
+            if (bind)
+              Update_BindWithinGame();
         }
 
         /// <summary>
