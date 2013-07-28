@@ -11,6 +11,10 @@ The motivation behind this recreation came from my search for a productive proje
 
 Mr. Fan has graciously given permission for me to make the source of this re-creation, including the resources, available. Under no circumstances may this work be used for commercial purposes or otherwise for profit.
 
+Release
+=======
+
+The latest release of this software may be found at https://github.com/ascott18/munchies/releases.
 
 Development
 ===========

@@ -64,7 +64,6 @@ namespace Munchies
 
                     Controls.Add(contentContainer);
 
-
                     Focus();
                 }
             }
