@@ -1,7 +1,7 @@
 Munchies
 ========
 
-A re-creation of Michael Fan's 1996-2001 game, Munchies [(Official Website)](mikefan.com/munchies/)
+A re-creation of Michael Fan's 1996-2001 game, Munchies [(Official Website)](http://www.mikefan.com/munchies/)
 
 Munchies was originally created by Michael Fan in 1996 for Apple Macintosh OS 7. Its final version 1.0.7, was released in 2001.
 
