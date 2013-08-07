@@ -41,17 +41,25 @@ namespace Munchies
         } */
 
         /// <summary>
-        /// Gets an zero-based integer representing the current state of a looping animation
+        /// Gets an zero-based integer representing the current state of a looping animation.
         /// </summary>
-        /// <param name="time">The time (in seconds) that will be used to determine the state</param>
-        /// <param name="numStates">The total number of states in the animation</param>
-        /// <param name="duration">The duration of each state in the animation in milliseconds</param>
-        /// <returns>The zero-based state of the animation at the current time</returns>
+        /// <param name="time">The time (in seconds) that will be used to determine the state.</param>
+        /// <param name="numStates">The total number of states in the animation.</param>
+        /// <param name="duration">The duration of each state in the animation in milliseconds.</param>
+        /// <returns>The zero-based state of the animation at the current time.</returns>
         public static int GetState(double time, int numStates, int duration)
         {
             return GetState(0, time, numStates, duration);
         }
 
+        /// <summary>
+        /// Gets an zero-based integer representing the current state of a looping animation.
+        /// </summary>
+        /// <param name="startTime">The time (in seconds) at which the animation should start, relative to the gameTime parameter.</param>
+        /// <param name="gameTime">The time (in seconds) that will be used to determine the state.</param>
+        /// <param name="numStates">The total number of states in the animation.</param>
+        /// <param name="duration">The duration of each state in the animation in milliseconds.</param>
+        /// <returns>The zero-based state of the animation at the current time.</returns>
         public static int GetState(double startTime, double gameTime, int numStates, int duration)
         {
             double gameTimeMilliseconds = (gameTime - startTime) * 1000;
