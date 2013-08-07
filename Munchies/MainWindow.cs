@@ -380,7 +380,8 @@ namespace Munchies
             FormClosing += MainWindow_FormClosing;
             
             // Initialize the audio manager
-            AudioManager.Initialize(this);
+            AudioManager.Initialize(7);
+            AudioManager.InitializeVolumeMenu(soundToolStripMenuItem);
         }
 
         void MainWindow_FormClosing(object sender, FormClosingEventArgs e)

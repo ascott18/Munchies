@@ -120,13 +120,23 @@ namespace Munchies
         private static ISoundEngine engine;
 
 
-        internal static void Initialize(MainWindow window)
+        internal static void Initialize(int maxVolume)
         {
             engine = new ISoundEngine();
 
-            Program.Settings.DeclareDefault("SoundVolume", 4);
+            volumeLevelMax = maxVolume;
+
+            Program.Settings.DeclareDefault("SoundVolume", volumeLevelMax / 2 + 1);
+
+            Volume = (float)(int)Program.Settings.GetSetting("SoundVolume") / (float)volumeLevelMax;
             
-            for (int i = 0; i <= VolumeLevelMax; i++)
+
+            PreloadAllSounds();
+        }
+
+        public static void InitializeVolumeMenu(ToolStripMenuItem parentMenu)
+        {
+            for (int i = 0; i <= volumeLevelMax; i++)
             {
                 ToolStripMenuItem Item = new ToolStripMenuItem();
 
@@ -134,20 +144,22 @@ namespace Munchies
                 Item.Text = i.ToString();
                 Item.ShortcutKeyDisplayString = "Ctrl+" + i;
 
-                window.soundToolStripMenuItem.DropDownItems.Add(Item);
+                parentMenu.DropDownItems.Add(Item);
 
                 // Needed to pass a unique value to each lambda
                 // (otherwise, all of them use the max value of the iteration)
                 int thisSoundLevel = i;
 
-                Command cmd = new Command(() => {
+                Command cmd = new Command(() =>
+                {
                     Program.Settings.SetSetting("SoundVolume", thisSoundLevel);
-                    Volume = (float)thisSoundLevel / (float)VolumeLevelMax;
+                    Volume = (float)thisSoundLevel / (float)volumeLevelMax;
                     GetSound("Munchies.Resources.Sounds.exitSound.ogg").Play();
                 },
                     Keys.Control | Keys.D0 + i,
                     Item
-                ) {
+                )
+                {
                     Checked = () => (int)Program.Settings.GetSetting("SoundVolume") == thisSoundLevel
                 };
 
@@ -155,12 +167,7 @@ namespace Munchies
             }
 
             // Special handling for the first volume setting.
-            window.soundToolStripMenuItem.DropDownItems[0].Text = "Off";
-
-            Volume = (float)(int)Program.Settings.GetSetting("SoundVolume") / (float)VolumeLevelMax;
-            
-
-            PreloadAllSounds();
+            parentMenu.DropDownItems[0].Text = "Off";
         }
 
         private static Dictionary<String, Sound> Sounds = new Dictionary<String, Sound>();
@@ -177,7 +184,7 @@ namespace Munchies
             }
         }
 
-        public const int VolumeLevelMax = 7;
+        private static int volumeLevelMax;
         private static float volume;
         public static float Volume
         {
