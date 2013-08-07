@@ -57,7 +57,11 @@ namespace Munchies
                         );
 
 
-                    contentContainer.Location = new Point((ClientSize.Width - contentContainer.Size.Width) / 2, (ClientSize.Height - contentContainer.Size.Height) / 2);
+                    // Set the location of the content container in the center of the window.
+                    contentContainer.Location = new Point(
+                        (ClientSize.Width - contentContainer.Size.Width) / 2,
+                        (ClientSize.Height - contentContainer.Size.Height) / 2);
+
                     contentContainer.Anchor = AnchorStyles.None;
 
                     contentContainer.Visible = true;
@@ -358,15 +362,18 @@ namespace Munchies
 
             InitializeCommands();
 
+            // Calculate the initial size and minimum size of the window.
             Size windowPadding = Size.Subtract(Size, ClientSize);
             MinimumSize = Size.Add(windowPadding, Program.ContentSizeSetting);
             Size = MinimumSize;
 
+            // Show the title screen 
             ContentContainer = ContentContainers.First(c => c is TitleScreenContainer);
 
             Program.Settings.DeclareDefault("MusicEnabled", false);
             Program.Settings.DeclareDefault("FoodSpeed", Food.FoodSpeed.Fast);
 
+            // Restore the maximized state of the game from the last time it was open.
             Program.Settings.DeclareDefault("Maximized", false);
             bool Maximized = (bool)Program.Settings.GetSetting("Maximized");
             WindowState = Maximized ? FormWindowState.Maximized : FormWindowState.Normal;
@@ -378,6 +385,8 @@ namespace Munchies
 
         void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Record the window state in the settings so that it may be restored
+            // the next time that the program is opened.
             Program.Settings.SetSetting("Maximized", WindowState == FormWindowState.Maximized);
         }
 
@@ -386,6 +395,9 @@ namespace Munchies
         # region Game Management
 
         private Game currentGame;
+        /// <summary>
+        /// Holds the game that is currently in progress.
+        /// </summary>
         public Game CurrentGame
         {
             get 
@@ -413,6 +425,9 @@ namespace Munchies
             }
         }
 
+        /// <summary>
+        /// Starts a new game.
+        /// </summary>
         public void NewGame()
         {
             GameContainer container = (GameContainer)ContentContainers.First(c => c is GameContainer);
@@ -431,36 +446,44 @@ namespace Munchies
             CurrentGame.Start();
         }
 
+        /// <summary>
+        /// Plays or resumes that current game.
+        /// </summary>
         public void Play()
         {
             if (CurrentGame != null) CurrentGame.Play();
         }
 
+        /// <summary>
+        /// Pauses the current game.
+        /// </summary>
         public void Pause()
         {
             if (CurrentGame != null) CurrentGame.Pause(true);
         }
 
-        void currentGame_OnPlay(object sender, EventArgs e)
+        private void currentGame_OnPlay(object sender, EventArgs e)
         {
             menuStrip1.Visible = false;
 
             CheckMusicPlayingStatus();
         }
 
-        void currentGame_OnPause(object sender, EventArgs e)
+        private void currentGame_OnPause(object sender, EventArgs e)
         {
             menuStrip1.Visible = true;
 
             CheckMusicPlayingStatus();
         }
 
-        void currentGame_Ended(object sender, EventArgs e)
+        private void currentGame_Ended(object sender, EventArgs e)
         {
             Game game = sender as Game;
 
             AudioManager.StopAllSounds();
 
+            // Check to see if the score is a high score.
+            // If it is, request the player's name and then show the high scores dialog.
             if (game.GameMode.Scores.IsScoreRankworthy(game.ScorePoints))
             {
                 Score score = new Score()
@@ -479,9 +502,13 @@ namespace Munchies
                 ShowScores(score);
             }
 
+            // This is neede to make sure that all the menu items reflect the proper enabled state.
             menuStrip1.Refresh();
         }
 
+        /// <summary>
+        /// Automatically pauses the game when the main window loses focus.
+        /// </summary>
         private void Form1_Deactivate(object sender, EventArgs e)
         {
             Pause();
@@ -489,7 +516,9 @@ namespace Munchies
 
         #endregion
 
-
+        /// <summary>
+        /// Checks the current state of the background music.
+        /// </summary>
         public void CheckMusicPlayingStatus()
         {
             AudioManager.Sound Music = AudioManager.GetSound("Munchies.Resources.Sounds.Music.mod");
@@ -500,12 +529,19 @@ namespace Munchies
                 && CurrentGame.HasStarted)
             {
                 if (CurrentGame.Playing)
+                {
+                    // Play the music if the user has enabled it and the current game is in progress.
                     Music.PlayOrResumeLoop();
+                }
                 else
+                {
+                    // Pauses the music if the game is paused
                     Music.Pause();
+                }
             }
             else
             {
+                // Stops the music if the game is not in progress or the user has disabled music.
                 Music.Stop();
             }
 
@@ -513,6 +549,9 @@ namespace Munchies
 
         #region Scores
 
+        /// <summary>
+        /// Shows the high scores dialog.
+        /// </summary>
         public void ShowScores()
         {
             ScoreContainer container = (ScoreContainer)ContentContainers.First(c => c is ScoreContainer);
@@ -524,6 +563,10 @@ namespace Munchies
             container.HighlightedScore = null;
         }
 
+        /// <summary>
+        /// Shows thie high scores dialog and bolds the specified score.
+        /// </summary>
+        /// <param name="score">A Score that will be bolded in the dialog when it is shown.</param>
         public void ShowScores(Score score)
         {
             ShowScores();

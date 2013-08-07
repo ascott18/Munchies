@@ -35,11 +35,28 @@ namespace AndrewScott.SimpleCommandManager
 
     public class Command
     {
+        /// <summary>
+        /// The key combination that will trigger the action
+        /// </summary>
         public readonly Keys Keys;
+
+        /// <summary>
+        /// The menu item that will trigger the command when clicked
+        /// </summary>
         public readonly ToolStripMenuItem MenuItem;
+
+        /// <summary>
+        /// The action to be preformed when the command is triggered
+        /// </summary>
         public readonly Action Action;
 
+
         private Func<bool> enabled;
+        /// <summary>
+        /// Function that will be called to determine if the command should be triggered.
+        /// 
+        /// This controls both key command behavior and menu item enabled state.
+        /// </summary>
         public Func<bool> Enabled
         {
             get { return enabled; }
@@ -49,6 +66,9 @@ namespace AndrewScott.SimpleCommandManager
 
                 if (item != null)
                 {
+                    // If this item is a sub-menu,
+                    // It should be checked for enabled state when the parent menu item is
+                    // shown and when it is painted.
                     if (item.OwnerItem is ToolStripMenuItem)
                     {
                         var owner = (ToolStripMenuItem)item.OwnerItem;
@@ -56,6 +76,9 @@ namespace AndrewScott.SimpleCommandManager
                         owner.VisibleChanged += MenuItem_Paint_Enabled;
                     }
 
+                    // If this item is a top-level menu,
+                    // It should be checked for enabled state when the parent toolstrip is
+                    // shown and when it is painted.
                     if (item.Owner is ToolStrip)
                     {
                         var owner = (ToolStrip)item.Owner;
@@ -69,13 +92,16 @@ namespace AndrewScott.SimpleCommandManager
             }
         }
 
-        void MenuItem_Paint_Enabled(object sender, EventArgs e)
+        private void MenuItem_Paint_Enabled(object sender, EventArgs e)
         {
             MenuItem.Enabled = Enabled();
         }
 
 
         private Func<bool> _checked;
+        /// <summary>
+        /// Function that will be called to determine if the menu item should be checked or not.
+        /// </summary>
         public Func<bool> Checked
         {
             get { return _checked; }
@@ -88,12 +114,17 @@ namespace AndrewScott.SimpleCommandManager
             }
         }
 
-        void MenuItem_Paint_Checked(object sender, EventArgs e)
+        private void MenuItem_Paint_Checked(object sender, EventArgs e)
         {
             MenuItem.Checked = Checked();
         }
 
-
+        /// <summary>
+        /// Create a new command that is attached to both a menu item and key bindings.
+        /// </summary>
+        /// <param name="action">The action to be preformed when the command is triggered</param>
+        /// <param name="keys">The key combination that will trigger the action</param>
+        /// <param name="menuItem">The menu item that will trigger the command when clicked</param>
         public Command(Action action, Keys keys, ToolStripMenuItem menuItem)
         {
             Action = action;
@@ -103,12 +134,22 @@ namespace AndrewScott.SimpleCommandManager
             MenuItem.Click += MenuItem_Click;
         }
 
+        /// <summary>
+        /// Create a new command that is triggered only be key command.
+        /// </summary>
+        /// <param name="action">The action to be preformed when the command is triggered</param>
+        /// <param name="keys">The key combination that will trigger the action</param>
         public Command(Action action, Keys keys)
         {
             Action = action;
             Keys = keys;
         }
 
+        /// <summary>
+        /// Create a new command that is triggered only by a menu item.
+        /// </summary>
+        /// <param name="action">The action to be preformed when the command is triggered</param>
+        /// <param name="menuItem">The menu item that will trigger the command when clicked</param>
         public Command(Action action, ToolStripMenuItem menuItem)
         {
             Action = action;
@@ -118,7 +159,7 @@ namespace AndrewScott.SimpleCommandManager
         }
 
 
-        void MenuItem_Click(object sender, EventArgs e)
+        private void MenuItem_Click(object sender, EventArgs e)
         {
             Action();
         }
