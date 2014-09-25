@@ -407,12 +407,6 @@ namespace Munchies
             }
             set
             {
-                // Handle the old game
-                if (currentGame != null)
-                {
-                    currentGame.Dispose();
-                }
-
                 currentGame = value;
 
                 // Handle the new game

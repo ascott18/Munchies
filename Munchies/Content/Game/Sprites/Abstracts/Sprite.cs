@@ -422,15 +422,6 @@ namespace Munchies
         }
 
 
-
-        private bool disposed;
-        public bool IsDisposed { get { return disposed; } }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
         private void RemoveFromCollections()
         {
             Game.AllSprites.Remove(this);
@@ -438,23 +429,6 @@ namespace Munchies
 
             if (Level != null)
                 Level.LevelSprites.Remove(this);
-        }
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    RemoveFromCollections();
-
-                    Game = null;
-                    Level = null;
-                }
-
-                // There are no unmanaged resources to release, but
-                // if we add them, they need to be released here.
-            }
-            disposed = true;
         }
     }
 }

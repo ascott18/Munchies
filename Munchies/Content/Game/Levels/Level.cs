@@ -9,28 +9,27 @@ using System.Windows.Forms;
 
 namespace Munchies
 {
-    public abstract class Level : IDisposable
+    public abstract class Level
     {
         // Reference to the game that the level was created for
-        public Game Game;
+        public readonly Game Game;
 
-        public static Random Random = new Random();
+        protected static readonly Random Random = new Random();
 
-        public List<Sprite> LevelSprites = new List<Sprite>();
+        public readonly List<Sprite> LevelSprites = new List<Sprite>();
 
 
-        // The number of the level
-        public int LevelNumber;
-        public bool IsDesert { private set; get; }
-        public double LevelStartTime;
+        public readonly int LevelNumber;
+        public readonly bool IsDesert;
+        public readonly double LevelStartTime;
 
         public int FoodSpawned = 0;
         public int SkullsSpawned = 0;
-        public bool IsFinished;
+        protected bool IsFinished;
 
-        LevelExit LevelExit;
+        private LevelExit LevelExit;
         public bool PeaIsActive;
-        public Image BackgroundImage;
+        public readonly Image BackgroundImage;
 
         public Level(Game game, int levelNumber, bool isDesert)
         {
@@ -98,41 +97,6 @@ namespace Munchies
             {
                 sprite.Draw(graphics);
             }
-        }
-
-
-
-
-        private bool disposed;
-        public bool IsDisposed { get { return disposed; } }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    LevelExit = null;
-                    Game = null;
-
-                    BackgroundImage = null;
-
-                    // Iteration done in reverse because sprites are removed from the
-                    // list as they are disposed which causes the list to shift.
-                    foreach (Sprite sprite in LevelSprites.Reverse<Sprite>())
-                        sprite.Dispose();
-
-                }
-
-                // There are no unmanaged resources to release, but
-                // if we add them, they need to be released here.
-            }
-            disposed = true;
         }
     }
 }

@@ -10,12 +10,12 @@ using System.Media;
 
 namespace Munchies
 {
-    public class Game : Panel, IDisposable
+    public class Game : Panel
     {
         public Melvin Melvin;
-        public GameContainer GameContainer;
+        public readonly GameContainer GameContainer;
 
-        public GameMode GameMode;
+        public readonly GameMode GameMode;
 
         private Level currentLevel;
         public Level CurrentLevel {
@@ -25,11 +25,6 @@ namespace Munchies
             }
             set 
             {
-                if (currentLevel != null)
-                {
-                    currentLevel.Dispose();
-                }
-
                 currentLevel = value;
 
                 if (currentLevel != null)
@@ -40,8 +35,8 @@ namespace Munchies
             }
         }
 
-        public List<Sprite> AllSprites = new List<Sprite>();
-        public List<Sprite> GameSprites = new List<Sprite>();
+        public readonly List<Sprite> AllSprites = new List<Sprite>();
+        public readonly List<Sprite> GameSprites = new List<Sprite>();
 
         public float ScaleFactor1DX = 1;
         public float ScaleFactor1DY = 1;
@@ -107,7 +102,7 @@ namespace Munchies
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
             
             // The game update engine
-            Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            Paint += new System.Windows.Forms.PaintEventHandler(this.Engine);
 
             Click += Game_Click;
 
@@ -234,7 +229,7 @@ namespace Munchies
 
         const int BaseSleepTimeMS = 5;
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        private void Engine(object sender, PaintEventArgs e)
         {
             // Timing control
             long StartTimeMS = timer.ElapsedMilliseconds;
@@ -338,16 +333,13 @@ namespace Munchies
 
             foreach (Sprite sprite in AllSprites.Reverse<Sprite>())
             {
-                if (!sprite.IsDisposed)
-                {
-                    sprite.Update(gameTime, elapsedTime);
+                sprite.Update(gameTime, elapsedTime);
 
-                    foreach (Sprite sprite2 in AllSprites.Reverse<Sprite>())
+                foreach (Sprite sprite2 in AllSprites.Reverse<Sprite>())
+                {
+                    if (sprite.TestCollision(sprite2))
                     {
-                        if (!sprite.IsDisposed && sprite.TestCollision(sprite2))
-                        {
-                            sprite.OnCollide(sprite2);
-                        }
+                        sprite.OnCollide(sprite2);
                     }
                 }
             }
@@ -418,46 +410,5 @@ namespace Munchies
         #endregion
 
 
-
-        private bool disposed;
-        protected override void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    if (CurrentLevel != null)
-                    {
-                        CurrentLevel.Dispose();
-                    }
-
-                    if (NextLevel != null)
-                    {
-                        NextLevel.Dispose();
-                    }
-
-                    timer = null;
-
-                    GameMode = null;
-                    Melvin = null;
-
-                    BackgroundImage = null;
-
-                    // Iteration done in reverse because sprites are removed from the
-                    // list as they are disposed which causes the list to shift.
-                    foreach (Sprite sprite in GameSprites.Reverse<Sprite>())
-                        sprite.Dispose();
-
-
-                }
-
-                // There are no unmanaged resources to release, but
-                // if we add them, they need to be released here.
-            }
-
-            disposed = true;
-
-            base.Dispose(disposing);
-        }
     }
 }
