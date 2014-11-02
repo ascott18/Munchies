@@ -23,7 +23,7 @@ namespace Munchies
 				title.Text = string.Format("High Scores: {0} x {1} {2}",
 				                           CurrentGameMode.ContainerSize.Width, CurrentGameMode.ContainerSize.Height,
 				                           CurrentGameMode.GameDifficulty);
-				
+
 				for (int i = 0; i < Scores.MaxNumScores; i++)
 				{
 					Score score = CurrentGameMode.Scores[i];
@@ -65,7 +65,7 @@ namespace Munchies
 			}
 		}
 
-		private ScoreEntry[] Entries;
+		private readonly ScoreEntry[] Entries;
 
 		public ScoreContainer()
 		{

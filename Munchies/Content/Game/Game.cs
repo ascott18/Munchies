@@ -77,7 +77,7 @@ namespace Munchies
 		}
 
 		// Timing and frame control
-		private Stopwatch timer = new Stopwatch();
+		private readonly Stopwatch timer = new Stopwatch();
 		private double lastTime;
 		public double GameTime;
 

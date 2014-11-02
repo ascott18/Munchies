@@ -50,7 +50,7 @@ namespace Munchies
 
 		#region Utensil Spawning
 
-		private Dictionary<Type, double> UtensilKilledTimes = new Dictionary<Type, double>();
+		private readonly Dictionary<Type, double> UtensilKilledTimes = new Dictionary<Type, double>();
 		private double LastUtensilSpawnedTime;
 
 		private const int UtensilSpawnFrequency = 1;
@@ -181,7 +181,7 @@ namespace Munchies
 			if (IsFinished)
 				return;
 
-			double rnd = (double)Random.Next((int)(100 * 10e+5)) / 10e+5;
+			double rnd = Random.Next((int)(100 * 10e+5)) / 10e+5;
 
 			double ChanceOfSpawnNow = SpawnsPerSecond * 100 * elapsedTime * Game.ScaleFactor1DY;
 
@@ -207,7 +207,7 @@ namespace Munchies
 					Game.Melvin.Pepper || LevelSprites.OfType<Pepper>().Any() ? 0 : 10, 
 
 					// 5 Coffee
-					3, 
+					3
 				}))
 				{
 					case 0:

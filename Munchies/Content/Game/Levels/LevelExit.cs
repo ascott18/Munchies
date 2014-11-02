@@ -9,7 +9,7 @@ namespace Munchies
 {
 	internal class LevelExit : Sprite
 	{
-		private int State = 0;
+		private int State;
 
 		private static readonly string[] exitImageNames =
 		{

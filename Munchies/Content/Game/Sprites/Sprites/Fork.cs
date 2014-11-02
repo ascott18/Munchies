@@ -9,7 +9,7 @@ namespace Munchies
 	internal class Fork : Utensil
 	{
 		private const float Gravity = 550;
-		private int PreviousHeight = 0;
+		private int PreviousHeight;
 
 		public new static int SpawnFrequency = 10;
 

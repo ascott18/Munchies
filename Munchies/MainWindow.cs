@@ -22,7 +22,7 @@ namespace Munchies
 	{
 		# region Content Container Management
 
-		private List<ContentContainer> ContentContainers = new List<ContentContainer>()
+		private readonly List<ContentContainer> ContentContainers = new List<ContentContainer>
 		{
 			new GameContainer(),
 			new TitleScreenContainer(),
@@ -292,7 +292,7 @@ namespace Munchies
 			{
 				// A list that will hold all the available resolutions
 				// Included are the four resolutions from the original game.
-				List<Size> Resolutions = new List<Size>()
+				List<Size> Resolutions = new List<Size>
 				{
 					new Size(512, 342),
 					new Size(512, 384),
@@ -425,7 +425,7 @@ namespace Munchies
 		private Game currentGame;
 
 		/// <summary>
-		/// Holds the game that is currently in progress.
+		///     Holds the game that is currently in progress.
 		/// </summary>
 		public Game CurrentGame
 		{
@@ -446,7 +446,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Starts a new game.
+		///     Starts a new game.
 		/// </summary>
 		public void NewGame()
 		{
@@ -467,7 +467,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Plays or resumes that current game.
+		///     Plays or resumes that current game.
 		/// </summary>
 		public void Play()
 		{
@@ -475,7 +475,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Pauses the current game.
+		///     Pauses the current game.
 		/// </summary>
 		public void Pause()
 		{
@@ -506,7 +506,7 @@ namespace Munchies
 			// If it is, request the player's name and then show the high scores dialog.
 			if (game.GameMode.Scores.IsScoreRankworthy(game.ScorePoints))
 			{
-				Score score = new Score()
+				Score score = new Score
 				{
 					Points = game.ScorePoints,
 					Level = game.CurrentLevel.LevelNumber,
@@ -527,7 +527,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Automatically pauses the game when the main window loses focus.
+		///     Automatically pauses the game when the main window loses focus.
 		/// </summary>
 		private void Form1_Deactivate(object sender, EventArgs e)
 		{
@@ -538,7 +538,7 @@ namespace Munchies
 
 
 		/// <summary>
-		/// Checks the current state of the background music.
+		///     Checks the current state of the background music.
 		/// </summary>
 		public void CheckMusicPlayingStatus()
 		{
@@ -571,7 +571,7 @@ namespace Munchies
 		#region Scores
 
 		/// <summary>
-		/// Shows the high scores dialog.
+		///     Shows the high scores dialog.
 		/// </summary>
 		public void ShowScores()
 		{
@@ -585,7 +585,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Shows thie high scores dialog and bolds the specified score.
+		///     Shows thie high scores dialog and bolds the specified score.
 		/// </summary>
 		/// <param name="score">A Score that will be bolded in the dialog when it is shown.</param>
 		public void ShowScores(Score score)
@@ -601,7 +601,7 @@ namespace Munchies
 
 
 		/// <summary>
-		/// Implementation of CommandManager from the SimpleCommandManager project
+		///     Implementation of CommandManager from the SimpleCommandManager project
 		/// </summary>
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
@@ -614,10 +614,11 @@ namespace Munchies
 
 	public static class SpawnRandomizer
 	{
-		private static Random random = new Random();
+		private static readonly Random random = new Random();
 
 		/// <summary>
-		/// Given an array of integers where each integer represents the proportion to the sum of the array that that index should be chosen, pick an index and return it.
+		///     Given an array of integers where each integer represents the proportion to the sum of the array that that index
+		///     should be chosen, pick an index and return it.
 		/// </summary>
 		/// <param name="chances">The integer array that contains the proportions at which each index should be chosen.</param>
 		/// <returns>The index of the array that has been chosen.</returns>

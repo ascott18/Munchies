@@ -33,7 +33,7 @@ namespace Munchies
 
 		internal void Update_TryToSpawnTreat(double gameTime, double elapsedTime)
 		{
-			double rnd = (double)Random.Next((int)(100 * 10e+5)) / 10e+5;
+			double rnd = Random.Next((int)(100 * 10e+5)) / 10e+5;
 
 			double ChanceOfSpawnNow = SpawnsPerSecond * 100 * elapsedTime * Game.ScaleFactor1DX;
 
@@ -45,7 +45,7 @@ namespace Munchies
 				{
 					Math.Max(0, 95 - (int)(gameTime - LevelStartTime)), // 0 Desert
 					Math.Max(5, 20 - (int)(gameTime - LevelStartTime)), // 1 Peas
-					10 + (int)(gameTime - LevelStartTime), // 2 PlainSkull
+					10 + (int)(gameTime - LevelStartTime) // 2 PlainSkull
 				}))
 				{
 					case 0:

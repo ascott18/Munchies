@@ -9,7 +9,7 @@ using System.Media;
 namespace Munchies
 {
 	/// <summary>
-	/// Sprite represents a 2d shape that has a location, velocity
+	///     Sprite represents a 2d shape that has a location, velocity
 	/// </summary>
 	public abstract class Sprite
 	{
@@ -28,17 +28,16 @@ namespace Munchies
 		public static Random Random = new Random();
 
 		/// <summary>
-		/// A dictonary table that links short file names (E.graphics. "MelvinS") to their System.Drawing.Image representation that has been loaded through PreloadImages().
+		///     A dictonary table that links short file names (E.graphics. "MelvinS") to their System.Drawing.Image representation
+		///     that has been loaded through PreloadImages().
 		/// </summary>
 		protected static Dictionary<string, Image> Images = new Dictionary<string, Image>();
 
 
 		/// <summary>
-		/// Constructs a sprite, attaching it to both a level and a game.
-		/// 
-		/// This ctor should only be used for sprites that are tied to a specific level. (Don't create Melvin using it).
+		///     Constructs a sprite, attaching it to both a level and a game.
+		///     This ctor should only be used for sprites that are tied to a specific level. (Don't create Melvin using it).
 		/// </summary>
-		/// 
 		/// <param name="levelInstance">The level that the sprite is being created for</param>
 		public Sprite(Level levelInstance)
 		{
@@ -53,9 +52,9 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Constructs a sprite, attaching it to a game.
-		/// 
-		/// This ctor should only be used for sprites that should persist through multiple levels within a single game (Melvin).
+		///     Constructs a sprite, attaching it to a game.
+		///     This ctor should only be used for sprites that should persist through multiple levels within a single game
+		///     (Melvin).
 		/// </summary>
 		/// <param name="gameInstance">The game that the sprite is being created for</param>
 		public Sprite(Game gameInstance)
@@ -70,7 +69,7 @@ namespace Munchies
 
 
 		/// <summary>
-		/// A base update method. This should be overridden by all sprites.
+		///     A base update method. This should be overridden by all sprites.
 		/// </summary>
 		/// <param name="gameTime"></param>
 		/// <param name="elapsedTime"></param>
@@ -81,12 +80,12 @@ namespace Munchies
 
 
 		/// <summary>
-		/// The name of the image that should be drawn for the sprite.
+		///     The name of the image that should be drawn for the sprite.
 		/// </summary>
 		public string ImageName;
 
 		/// <summary>
-		/// A base draw method.
+		///     A base draw method.
 		/// </summary>
 		/// <param name="graphics"></param>
 		public virtual void Draw(Graphics graphics)
@@ -108,7 +107,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Enum representing edges of the game frame that the sprite may be colliding with.
+		///     Enum representing edges of the game frame that the sprite may be colliding with.
 		/// </summary>
 		[Flags]
 		public enum EdgeCollisionTypes : byte
@@ -121,7 +120,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Tests what edges of the game frame the sprite is colliding with.
+		///     Tests what edges of the game frame the sprite is colliding with.
 		/// </summary>
 		/// <returns>Returns a EdgeCollisionTypes representing the edges that the sprite is intersecting.</returns>
 		public EdgeCollisionTypes TestEdgeCollision()
@@ -130,12 +129,12 @@ namespace Munchies
 
 			if (Location.X < 0)
 				collisions |= EdgeCollisionTypes.Left;
-			else if (Location.X > (float)Game.Size.Width - Size.Width)
+			else if (Location.X > Game.Size.Width - Size.Width)
 				collisions |= EdgeCollisionTypes.Right;
 
 			if (Location.Y < 0)
 				collisions |= EdgeCollisionTypes.Top;
-			else if (Location.Y > (float)Game.Size.Height - Size.Height)
+			else if (Location.Y > Game.Size.Height - Size.Height)
 				collisions |= EdgeCollisionTypes.Bottom;
 
 			return collisions;
@@ -144,7 +143,7 @@ namespace Munchies
 
 		// Update submethods
 		/// <summary>
-		/// Move the sprite based on its velocity.
+		///     Move the sprite based on its velocity.
 		/// </summary>
 		/// <param name="elapsedTime">The elapsedTime variable from the base Update method.</param>
 		public void Update_MoveVelocity(double elapsedTime)
@@ -159,8 +158,8 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Tests the sprite to ensure that it within the bounds of the game frame,
-		/// and if it has passed outside, set it back inside and bounce off the wall it protruded from.
+		///     Tests the sprite to ensure that it within the bounds of the game frame,
+		///     and if it has passed outside, set it back inside and bounce off the wall it protruded from.
 		/// </summary>
 		public void Update_TestEdgeCollisionAndBounce()
 		{
@@ -184,7 +183,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Checks and modifies a sprite's position to make sure that it lies within its Munchies.Game panel.
+		///     Checks and modifies a sprite's position to make sure that it lies within its Munchies.Game panel.
 		/// </summary>
 		public void Update_BindWithinGame()
 		{
@@ -196,7 +195,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Update method that will position the sprite so that it will wrap around the screen.
+		///     Update method that will position the sprite so that it will wrap around the screen.
 		/// </summary>
 		public void Update_WrapAround()
 		{
@@ -210,7 +209,7 @@ namespace Munchies
 			if (Location.X + Size.Width < 0)
 				// Left edge wraparound
 				Location.X = Game.Size.Width - 0.1f;
-			else if (Location.X > (float)Game.Size.Width)
+			else if (Location.X > Game.Size.Width)
 				// Right edge wraparound
 				Location.X = -Size.Width + 0.1f;
 		}
@@ -220,17 +219,20 @@ namespace Munchies
 			if (Location.Y + Size.Height < 0)
 				// Top edge wraparound
 				Location.Y = Game.Size.Height - 0.1f;
-			else if (Location.Y > (float)Game.Size.Height)
+			else if (Location.Y > Game.Size.Height)
 				// Bottom edge wraparound
 				Location.Y = -Size.Height + 0.1f;
 		}
 
 		/// <summary>
-		/// Update method that causes the sprite to veer away from Melvin when it is near him.
+		///     Update method that causes the sprite to veer away from Melvin when it is near him.
 		/// </summary>
 		/// <param name="elapsedTime">The elapsedTime variable from the base Update method.</param>
 		/// <param name="proximity">The distance (in pixels) at which the sprite will begin to avoid Melvin.</param>
-		/// <param name="multiplier">A multipler that determines how quickly this sprite will change velocity. It should probably be in the order of 10^3</param>
+		/// <param name="multiplier">
+		///     A multipler that determines how quickly this sprite will change velocity. It should probably
+		///     be in the order of 10^3
+		/// </param>
 		public void Update_AvoidMelvin(double elapsedTime, float proximity, float multiplier)
 		{
 			float Distance = (float)Math.Sqrt(
@@ -281,9 +283,9 @@ namespace Munchies
 		public void Update_KillIfOffScreen()
 		{
 			if (Location.X + Size.Width < 0
-			    || Location.X > (float)Game.Size.Width
+			    || Location.X > Game.Size.Width
 			    || Location.Y + Size.Height < 0
-			    || Location.Y > (float)Game.Size.Height
+			    || Location.Y > Game.Size.Height
 				)
 				Kill();
 		}
@@ -354,7 +356,7 @@ namespace Munchies
 
 		// Collision handling
 		/// <summary>
-		/// Tests if the sprite is colliding with another sprite
+		///     Tests if the sprite is colliding with another sprite
 		/// </summary>
 		/// <param name="spriteToTest">The sprite to check collision with</param>
 		/// <returns>True if the sprites are colliding, otherwise false</returns>
@@ -367,13 +369,13 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Delegate used to handle the Collide event.
+		///     Delegate used to handle the Collide event.
 		/// </summary>
 		/// <param name="sprite2">The sprite that (this) has intersected with.</param>
 		public delegate void CollideEventHandler(Sprite sprite2);
 
 		/// <summary>
-		/// Event that will be fired when any two sprites collide with one another.
+		///     Event that will be fired when any two sprites collide with one another.
 		/// </summary>
 		public event CollideEventHandler Collide;
 
@@ -386,11 +388,13 @@ namespace Munchies
 
 		// Image handling
 		/// <summary>
-		/// Preloads the image files that the sprite will use. Call SetImage(string fileName) to load one of the images.
+		///     Preloads the image files that the sprite will use. Call SetImage(string fileName) to load one of the images.
 		/// </summary>
-		/// <param name="fileName">A string of the file name to load.
-		/// 
-		/// The file name should just be the name of the file as it exists in Munchies.Images, minus extension. (E.G. "MelvinS")</param>
+		/// <param name="fileName">
+		///     A string of the file name to load.
+		///     The file name should just be the name of the file as it exists in Munchies.Images, minus extension. (E.G.
+		///     "MelvinS")
+		/// </param>
 		public void PreloadImages(string fileName)
 		{
 			if (!Images.ContainsKey(fileName))
@@ -398,11 +402,13 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Preloads the image files that the sprite will use. Call SetImage(string fileName) to load one of the images.
+		///     Preloads the image files that the sprite will use. Call SetImage(string fileName) to load one of the images.
 		/// </summary>
-		/// <param name="fileNames">A string array of file names to load.
-		/// 
-		/// The file names should just be the names of the files as they exists in Munchies.Images, minus extension. (E.G. "MelvinS")</param>
+		/// <param name="fileNames">
+		///     A string array of file names to load.
+		///     The file names should just be the names of the files as they exists in Munchies.Images, minus extension. (E.G.
+		///     "MelvinS")
+		/// </param>
 		public void PreloadImages(string[] fileNames)
 		{
 			foreach (string fileName in fileNames)

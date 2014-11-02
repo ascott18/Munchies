@@ -47,7 +47,7 @@ namespace Munchies
 
 			if (!IsSpawning && Level.Game.GameMode.GameDifficulty == Game.GameDifficulty.Expert)
 			{
-				double rnd = (double)Random.Next((int)(100 * 10e+5)) / 10e+5;
+				double rnd = Random.Next((int)(100 * 10e+5)) / 10e+5;
 
 				double ChanceOfChaseNow = ChanceToChaseMelvinPerSecond * 100 * elapsedTime;
 

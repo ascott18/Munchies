@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Munchies
 {
 	/// <summary>
-	/// Serves as a common base for all Content Containers.
+	///     Serves as a common base for all Content Containers.
 	/// </summary>
 	public abstract partial class ContentContainer : UserControl
 	{

@@ -11,8 +11,8 @@ namespace Munchies
 {
 	public partial class ScoreEntry : UserControl
 	{
-		private Font NormalFont = new Font("Microsoft Sans Serif", 9F);
-		private Font HighlightFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+		private readonly Font NormalFont = new Font("Microsoft Sans Serif", 9F);
+		private readonly Font HighlightFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
 
 		private bool highlighted;
 

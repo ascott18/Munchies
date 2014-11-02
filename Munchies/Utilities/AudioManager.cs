@@ -127,7 +127,7 @@ namespace Munchies
 
 			Program.Settings.DeclareDefault("SoundVolume", volumeLevelMax / 2 + 1);
 
-			Volume = (float)(int)Program.Settings.GetSetting("SoundVolume") / (float)volumeLevelMax;
+			Volume = (int)Program.Settings.GetSetting("SoundVolume") / (float)volumeLevelMax;
 
 
 			PreloadAllSounds();
@@ -153,7 +153,7 @@ namespace Munchies
 				Command cmd = new Command(() =>
 				{
 					Program.Settings.SetSetting("SoundVolume", thisSoundLevel);
-					Volume = (float)thisSoundLevel / (float)volumeLevelMax;
+					Volume = thisSoundLevel / (float)volumeLevelMax;
 					GetSound("Munchies.Resources.Sounds.exitSound.ogg").Play();
 				},
 				                          i < 10 ? Keys.Control | Keys.D0 + i : Keys.None,
@@ -170,7 +170,7 @@ namespace Munchies
 			parentMenu.DropDownItems[0].Text = "Off";
 		}
 
-		private static Dictionary<String, Sound> Sounds = new Dictionary<String, Sound>();
+		private static readonly Dictionary<String, Sound> Sounds = new Dictionary<String, Sound>();
 
 		internal static void PreloadAllSounds()
 		{

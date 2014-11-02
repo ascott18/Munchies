@@ -41,7 +41,7 @@ namespace Munchies
         } */
 
 		/// <summary>
-		/// Gets an zero-based integer representing the current state of a looping animation.
+		///     Gets an zero-based integer representing the current state of a looping animation.
 		/// </summary>
 		/// <param name="time">The time (in seconds) that will be used to determine the state.</param>
 		/// <param name="numStates">The total number of states in the animation.</param>
@@ -53,7 +53,7 @@ namespace Munchies
 		}
 
 		/// <summary>
-		/// Gets an zero-based integer representing the current state of a looping animation.
+		///     Gets an zero-based integer representing the current state of a looping animation.
 		/// </summary>
 		/// <param name="startTime">The time (in seconds) at which the animation should start, relative to the gameTime parameter.</param>
 		/// <param name="gameTime">The time (in seconds) that will be used to determine the state.</param>

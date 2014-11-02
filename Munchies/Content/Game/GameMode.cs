@@ -49,7 +49,7 @@ namespace Munchies
 		}
 
 
-		private static List<GameMode> AllModes = new List<GameMode>();
+		private static readonly List<GameMode> AllModes = new List<GameMode>();
 
 		public static GameMode GetGameMode(Game.GameDifficulty gameDifficulty, Size containerSize)
 		{
