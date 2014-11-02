@@ -234,13 +234,13 @@ namespace Munchies
 		public void Update_AvoidMelvin(double elapsedTime, float proximity, float multiplier)
 		{
 			float Distance = (float)Math.Sqrt(
-			                                  Math.Pow(
-			                                           (Game.Melvin.Location.X + (Game.Melvin.Size.Width / 2)) -
-			                                           (Location.X + (Size.Width / 2)), 2)
-			                                  +
-			                                  Math.Pow(
-			                                           (Game.Melvin.Location.Y + (Game.Melvin.Size.Height / 2)) -
-			                                           (Location.Y + (Size.Height / 2)), 2)
+				Math.Pow(
+					(Game.Melvin.Location.X + (Game.Melvin.Size.Width / 2)) -
+					(Location.X + (Size.Width / 2)), 2)
+				+
+				Math.Pow(
+					(Game.Melvin.Location.Y + (Game.Melvin.Size.Height / 2)) -
+					(Location.Y + (Size.Height / 2)), 2)
 				);
 			float Delta = (float)elapsedTime * ((proximity - Distance) / proximity) * multiplier;
 

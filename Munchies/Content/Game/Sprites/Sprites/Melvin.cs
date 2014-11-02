@@ -103,7 +103,7 @@ namespace Munchies
 		private void gameInstance_OnPause(object sender, EventArgs e)
 		{
 			Cursor.Position = Game.GameContainer.PointToScreen(
-			                                                   new Point((int)Location.X, (int)Location.Y));
+				new Point((int)Location.X, (int)Location.Y));
 		}
 
 		private void gameInstance_OnPlay(object sender, EventArgs e)
@@ -207,7 +207,7 @@ namespace Munchies
 			int h_mid = Game.GameContainer.Height / 2;
 
 			Cursor.Position = Game.GameContainer.PointToScreen(
-			                                                   new Point(w_mid, h_mid));
+				new Point(w_mid, h_mid));
 		}
 
 		private string MelvinImageName = "MelvinS";

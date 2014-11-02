@@ -193,14 +193,14 @@ namespace Munchies
 				{
 					// Determine and create the images that make up the background
 					Image leftImage = (Image)source.Clone(
-					                                      new Rectangle(0, 0, SideWidth, Height), source.PixelFormat);
+						new Rectangle(0, 0, SideWidth, Height), source.PixelFormat);
 
 					Image rightImage = (Image)source.Clone(
-					                                       new Rectangle(sourceImage.Size.Width - SideWidth, 0, SideWidth, Height),
-					                                       source.PixelFormat);
+						new Rectangle(sourceImage.Size.Width - SideWidth, 0, SideWidth, Height),
+						source.PixelFormat);
 
 					Image centerStrip = (Image)source.Clone(
-					                                        new Rectangle(SideWidth + 1, 0, 1, Height), source.PixelFormat);
+						new Rectangle(SideWidth + 1, 0, 1, Height), source.PixelFormat);
 
 					// Draw the left and right sides
 					g.DrawImage(leftImage, 0, 0);
