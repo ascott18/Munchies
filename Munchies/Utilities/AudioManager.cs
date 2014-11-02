@@ -134,6 +134,7 @@ namespace Munchies
             PreloadAllSounds();
         }
 
+
         public static void InitializeVolumeMenu(ToolStripMenuItem parentMenu)
         {
             for (int i = 0; i <= volumeLevelMax; i++)
@@ -156,7 +157,7 @@ namespace Munchies
                     Volume = (float)thisSoundLevel / (float)volumeLevelMax;
                     GetSound("Munchies.Resources.Sounds.exitSound.ogg").Play();
                 },
-                    Keys.Control | Keys.D0 + i,
+                    i < 10 ? Keys.Control | Keys.D0 + i : Keys.None,
                     Item
                 )
                 {
