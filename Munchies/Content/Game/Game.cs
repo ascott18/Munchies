@@ -167,60 +167,73 @@ namespace Munchies
 
 
 
+		static Dictionary<string, Image> statusDisplays = new Dictionary<string, Image>();
+		static Image GetStatusDisplay(Graphics graphics, string Text)
+		{
+			Image result;
+
+			// See if we've already made this status display.
+			if (statusDisplays.TryGetValue(Text, out result))
+				return result;
+
+			// Set up font. 
+			Font stringFont = new Font("Arial", 18);
+
+			// Measure the string.
+			SizeF stringSize = graphics.MeasureString(Text, stringFont);
+
+
+			// Create the status that we are going to be drawing
+			int Padding = 30;
+			int Height = 42;
+			int SideWidth = 18;
+			result = new Bitmap((int)stringSize.Width + Padding, Height);
+
+			// Compose the image that we will drawn
+			using (Graphics g = Graphics.FromImage(result))
+			{
+				// Draw the background to the image
+				using (Bitmap sourceImage = (Bitmap)Properties.Resources.ResourceManager.GetObject("LevelTransition"))
+				using (Bitmap source = new Bitmap(sourceImage))
+				{
+
+					// Determine and create the images that make up the background
+					Image leftImage = (Image)source.Clone(
+						new Rectangle(0, 0, SideWidth, Height), source.PixelFormat);
+
+					Image rightImage = (Image)source.Clone(
+						new Rectangle(sourceImage.Size.Width - SideWidth, 0, SideWidth, Height), source.PixelFormat);
+
+					Image centerStrip = (Image)source.Clone(
+						new Rectangle(SideWidth + 1, 0, 1, Height), source.PixelFormat);
+
+					// Draw the left and right sides
+					g.DrawImage(leftImage, 0, 0);
+					g.DrawImage(rightImage, result.Size.Width - SideWidth, 0);
+
+					// Draw the middle
+					for (int i = SideWidth; i < result.Size.Width - SideWidth; i++)
+						g.DrawImage(centerStrip, i, 0);
+				}
+
+
+				// Draw string to the image.
+				g.DrawString(Text, stringFont, Brushes.Black, new PointF(Padding / 2, (result.Size - stringSize).Height / 2 + 1));
+
+			}
+
+			statusDisplays[Text] = result;
+			return result;
+		}
 
         void DrawStatusDisplay(Graphics graphics, string Text)
         {
+			var statusDisplay = GetStatusDisplay(graphics, Text);
             
-            // Set up font. 
-            Font stringFont = new Font("Arial", 18);
-
-            // Measure the string.
-            SizeF stringSize = graphics.MeasureString(Text, stringFont);
-
-
-            // Create the status that we are going to be drawing
-            int Padding = 30;
-            int Height = 42;
-            int SideWidth = 18;
-            Image result = new Bitmap((int)stringSize.Width + Padding, Height);
-
-            // Compose the image that we will drawn
-            using (Graphics g = Graphics.FromImage(result))
-            {
-                // Draw the background to the image
-                using (Bitmap sourceImage = (Bitmap)Properties.Resources.ResourceManager.GetObject("LevelTransition"))
-                using (Bitmap source = new Bitmap(sourceImage))
-                {
-
-                    // Determine and create the images that make up the background
-                    Image leftImage = (Image)source.Clone(
-                        new Rectangle(0, 0, SideWidth, Height), source.PixelFormat);
-
-                    Image rightImage = (Image)source.Clone(
-                        new Rectangle(sourceImage.Size.Width - SideWidth, 0, SideWidth, Height), source.PixelFormat);
-
-                    Image centerStrip = (Image)source.Clone(
-                        new Rectangle(SideWidth + 1, 0, 1, Height), source.PixelFormat);
-
-                    // Draw the left and right sides
-                    g.DrawImage(leftImage, 0, 0);
-                    g.DrawImage(rightImage, result.Size.Width - SideWidth, 0);
-
-                    // Draw the middle
-                    for (int i = SideWidth; i < result.Size.Width - SideWidth; i++)
-                        g.DrawImage(centerStrip, i, 0);
-                }
-
-
-                // Draw string to the image.
-                g.DrawString(Text, stringFont, Brushes.Black, new PointF(Padding / 2, (result.Size - stringSize).Height / 2 + 1));
-
-            }
-
             // Draw the final image.
-            graphics.DrawImage(result,
-                (Size.Width - result.Size.Width) / 2,
-                (Size.Height - result.Size.Height) / 2);
+			graphics.DrawImage(statusDisplay,
+				(Size.Width - statusDisplay.Size.Width) / 2,
+				(Size.Height - statusDisplay.Size.Height) / 2);
 
         }
 
@@ -318,7 +331,7 @@ namespace Munchies
 
         void Game_Updated_Paused(Graphics graphics, double gameTime, double elapsedTime)
         {
-            DrawStatusDisplay(graphics, "Paused");
+			DrawStatusDisplay(graphics, "Paused");
         }
 
         #endregion
@@ -334,7 +347,7 @@ namespace Munchies
             foreach (Sprite sprite in AllSprites.Reverse<Sprite>())
             {
                 sprite.Update(gameTime, elapsedTime);
-
+                 
                 foreach (Sprite sprite2 in AllSprites.Reverse<Sprite>())
                 {
                     if (sprite.TestCollision(sprite2))
