@@ -14,7 +14,7 @@ namespace Munchies
 
 		public new static int MinimumLevel = 11;
 
-		private static string[] spoonImageNames = new string[]
+		private static readonly string[] spoonImageNames =
 		{
 			"Spoon1"
 			//, "Spoon2", "Spoon3", "Spoon4", "Spoon5" 
@@ -41,7 +41,7 @@ namespace Munchies
 		public override void Update(double gameTime, double elapsedTime)
 		{
 			if (LastPoisonKilledTime < gameTime - 0.2 &&
-			    (poison == null || poison.IsDead == true))
+			    (poison == null || poison.IsDead))
 			{
 				SpawnPoison();
 			}

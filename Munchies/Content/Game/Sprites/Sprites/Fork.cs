@@ -8,7 +8,7 @@ namespace Munchies
 {
 	internal class Fork : Utensil
 	{
-		private float Gravity = 550;
+		private const float Gravity = 550;
 		private int PreviousHeight = 0;
 
 		public new static int SpawnFrequency = 10;
@@ -61,10 +61,7 @@ namespace Munchies
 			if (!IsSpawning)
 				Update_TestEdgeCollisionAndBounce();
 
-			if (Velocity.X > 0)
-				ImageName = "Fork1";
-			else
-				ImageName = "Fork2";
+			ImageName = Velocity.X > 0 ? "Fork1" : "Fork2";
 		}
 
 		protected int Update_GetNewYMaxHeight(bool noLimit)

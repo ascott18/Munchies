@@ -11,8 +11,8 @@ namespace Munchies
 {
 	public partial class HighScoreDialog : DialogBase
 	{
-		private Score Score;
-		private GameMode GameMode;
+		private readonly Score score;
+		private readonly GameMode gameMode;
 
 		public HighScoreDialog(GameMode gameMode, Score score)
 		{
@@ -20,8 +20,8 @@ namespace Munchies
 
 			Program.Settings.DeclareDefault("LastScoreName", "Melvin");
 
-			Score = score;
-			GameMode = gameMode;
+			this.score = score;
+			this.gameMode = gameMode;
 
 			textBox1.Text = (string)Program.Settings.GetSetting("LastScoreName");
 		}
@@ -30,9 +30,9 @@ namespace Munchies
 		{
 			Program.Settings.SetSetting("LastScoreName", textBox1.Text);
 
-			Score.Name = textBox1.Text;
+			score.Name = textBox1.Text;
 
-			GameMode.Scores.AddScore(Score);
+			gameMode.Scores.AddScore(score);
 
 			Close();
 		}

@@ -23,9 +23,7 @@ namespace Munchies
 				title.Text = string.Format("High Scores: {0} x {1} {2}",
 				                           CurrentGameMode.ContainerSize.Width, CurrentGameMode.ContainerSize.Height,
 				                           CurrentGameMode.GameDifficulty);
-
-				var OrderedScores = CurrentGameMode.Scores.OrderByDescending(s => s.Points);
-
+				
 				for (int i = 0; i < Scores.MaxNumScores; i++)
 				{
 					Score score = CurrentGameMode.Scores[i];
@@ -81,7 +79,7 @@ namespace Munchies
 			for (int i = 0; i < Scores.MaxNumScores; i++)
 			{
 				ScoreEntry entry = new ScoreEntry();
-				entry.Location = new System.Drawing.Point(23, 60 + (entry.Size.Height * i));
+				entry.Location = new Point(23, 60 + (entry.Size.Height * i));
 				entry.rank.Text = string.Format("{0}.", i + 1);
 
 				scorePanel.Controls.Add(entry);

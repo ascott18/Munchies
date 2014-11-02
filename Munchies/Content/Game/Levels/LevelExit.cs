@@ -11,7 +11,7 @@ namespace Munchies
 	{
 		private int State = 0;
 
-		private static string[] exitImageNames = new string[]
+		private static readonly string[] exitImageNames =
 		{
 			"Exit1", "Exit2", "Exit3", "Exit4", "Exit5"
 		};

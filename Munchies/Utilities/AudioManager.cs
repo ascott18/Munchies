@@ -24,15 +24,15 @@ namespace Munchies
 
 			public Sound(string resourceName)
 			{
-				LoadSound(resourceName);
+				LoadSoundFile(resourceName);
 			}
 
 			public Sound(Stream file, string resourceName)
 			{
-				LoadSound(file, resourceName);
+				LoadSoundFile(file, resourceName);
 			}
 
-			public void LoadSound(string resourceName)
+			public void LoadSoundFile(string resourceName)
 			{
 				Assembly thisExe = Assembly.GetExecutingAssembly();
 
@@ -40,7 +40,7 @@ namespace Munchies
 				{
 					Stream file = thisExe.GetManifestResourceStream(resourceName);
 
-					LoadSound(file, resourceName);
+					LoadSoundFile(file, resourceName);
 				}
 				else
 				{
@@ -48,7 +48,7 @@ namespace Munchies
 				}
 			}
 
-			public void LoadSound(Stream file, string resourceName)
+			public void LoadSoundFile(Stream file, string resourceName)
 			{
 				source = engine.AddSoundSourceFromIOStream(file, resourceName);
 			}

@@ -8,7 +8,7 @@ namespace Munchies
 {
 	internal class DessertLevel : Level
 	{
-		private double SpawnsPerSecond = 3;
+		private const double SpawnsPerSecond = 3;
 
 		// Constructor
 		public DessertLevel(Game game, int levelNumber)
@@ -41,7 +41,7 @@ namespace Munchies
 			{
 				Sprite spawn;
 
-				switch (SpawnRandomizer.PickSpawn(new int[]
+				switch (SpawnRandomizer.PickSpawn(new[]
 				{
 					Math.Max(0, 95 - (int)(gameTime - LevelStartTime)), // 0 Desert
 					Math.Max(5, 20 - (int)(gameTime - LevelStartTime)), // 1 Peas

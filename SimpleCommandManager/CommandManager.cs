@@ -67,7 +67,7 @@ namespace AndrewScott.SimpleCommandManager
                 if (item != null)
                 {
                     // If this item is a sub-menu,
-                    // It should be checked for enabled state when the parent menu item is
+                    // it should be checked for enabled state when the parent menu item is
                     // shown and when it is painted.
                     if (item.OwnerItem is ToolStripMenuItem)
                     {
@@ -75,13 +75,13 @@ namespace AndrewScott.SimpleCommandManager
                         owner.Paint += MenuItem_Paint_Enabled;
                         owner.VisibleChanged += MenuItem_Paint_Enabled;
                     }
+                    else
+					{
+						// If this item is a top-level menu,
+						// it should be checked for enabled state when the parent toolstrip is
+						// shown and when it is painted.
 
-                    // If this item is a top-level menu,
-                    // It should be checked for enabled state when the parent toolstrip is
-                    // shown and when it is painted.
-                    if (item.Owner is ToolStrip)
-                    {
-                        var owner = (ToolStrip)item.Owner;
+                        var owner = item.Owner;
                         owner.Paint += MenuItem_Paint_Enabled;
                         owner.VisibleChanged += MenuItem_Paint_Enabled;
                     }

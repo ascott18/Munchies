@@ -72,7 +72,7 @@ namespace Munchies
 		/// <summary>
 		/// A base update method. This should be overridden by all sprites.
 		/// </summary>
-		/// <param name="GameTime"></param>
+		/// <param name="gameTime"></param>
 		/// <param name="elapsedTime"></param>
 		public virtual void Update(double gameTime, double elapsedTime)
 		{

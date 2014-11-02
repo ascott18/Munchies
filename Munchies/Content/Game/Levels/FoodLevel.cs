@@ -15,19 +15,19 @@ namespace Munchies
 		{
 			// Added 0.5 to these values for nearest-int rounding
 
-			TotalNumFoodToSpawn = (int)(20 + (levelNumber / 2) * game.ScaleFactor2D + 0.5);
+			totalNumFoodToSpawn = (int)(20 + (levelNumber / 2) * game.ScaleFactor2D + 0.5);
 
 			if (LevelNumber <= 4)
-				TotalNumSkullsToSpawn = 2 + LevelNumber;
+				totalNumSkullsToSpawn = 2 + LevelNumber;
 			else
-				TotalNumSkullsToSpawn = 6 + (LevelNumber / 5);
+				totalNumSkullsToSpawn = 6 + (LevelNumber / 5);
 
-			TotalNumSkullsToSpawn = (int)(TotalNumSkullsToSpawn * game.ScaleFactor2D + 0.5);
+			totalNumSkullsToSpawn = (int)(totalNumSkullsToSpawn * game.ScaleFactor2D + 0.5);
 
-			MaxNumSimultaneousSkulls = (int)(6 * game.ScaleFactor2D + 0.5);
-			MaxNumSimultaneousFood = (int)(7 * game.ScaleFactor2D + 0.5);
+			maxNumSimultaneousSkulls = (int)(6 * game.ScaleFactor2D + 0.5);
+			maxNumSimultaneousFood = (int)(7 * game.ScaleFactor2D + 0.5);
 
-			for (int i = 0; i < MaxNumSimultaneousFood; i++)
+			for (int i = 0; i < maxNumSimultaneousFood; i++)
 			{
 				PlainFood food = new PlainFood(this, LevelNumber);
 				food.SetLoc_Anywhere();
@@ -53,7 +53,7 @@ namespace Munchies
 		private Dictionary<Type, double> UtensilKilledTimes = new Dictionary<Type, double>();
 		private double LastUtensilSpawnedTime;
 
-		private int UtensilSpawnFrequency = 1;
+		private const int UtensilSpawnFrequency = 1;
 
 		private void Update_TryToSpawnUtensil<T>(Func<Level, T> ctor, double gameTime) where T : Utensil
 		{
@@ -71,7 +71,7 @@ namespace Munchies
 
 				int SpawnFrequency = (int)typeof(T).GetField("SpawnFrequency").GetValue(null);
 
-				if (LevelSprites.OfType<T>().Count() == 0
+				if (!LevelSprites.OfType<T>().Any()
 				    && UtensilKilledTimes[typeof(T)] + SpawnFrequency < gameTime)
 				{
 					T utensil = ctor(this);
@@ -91,13 +91,13 @@ namespace Munchies
 		private void Update_TryToSpawnUtensils(double gameTime, double elapsedTime)
 		{
 			if (LevelNumber >= Fork.MinimumLevel)
-				Update_TryToSpawnUtensil<Fork>(_ => new Fork(this), gameTime);
+				Update_TryToSpawnUtensil(_ => new Fork(this), gameTime);
 
 			if (LevelNumber >= Knife.MinimumLevel)
-				Update_TryToSpawnUtensil<Knife>(_ => new Knife(this), gameTime);
+				Update_TryToSpawnUtensil(_ => new Knife(this), gameTime);
 
 			if (LevelNumber >= Spoon.MinimumLevel)
-				Update_TryToSpawnUtensil<Spoon>(_ => new Spoon(this), gameTime);
+				Update_TryToSpawnUtensil(_ => new Spoon(this), gameTime);
 		}
 
 		#endregion
@@ -105,26 +105,26 @@ namespace Munchies
 
 		#region Skull Spawning
 
-		private int TotalNumSkullsToSpawn;
-		private int MaxNumSimultaneousSkulls;
-		private double LastSmartSkullKillTime = -100;
+		private readonly int totalNumSkullsToSpawn;
+		private readonly int maxNumSimultaneousSkulls;
+		private double lastSmartSkullKillTime = -100;
 
 		internal void Update_CheckSkullSpawns(double gameTime, double elapsedTime)
 		{
 			// Plain skulls
-			while (LevelSprites.OfType<FoodLevelPlainSkull>().Count() < MaxNumSimultaneousSkulls
-			       && SkullsSpawned < TotalNumSkullsToSpawn)
+			while (LevelSprites.OfType<FoodLevelPlainSkull>().Count() < maxNumSimultaneousSkulls
+			       && SkullsSpawned < totalNumSkullsToSpawn)
 			{
-				FoodLevelPlainSkull skull = new FoodLevelPlainSkull(this);
+				var skull = new FoodLevelPlainSkull(this);
 				skull.SetLoc_SomewhereAboveTop();
 			}
 
 			// Smart skulls
 			if (LevelNumber > 15
-			    && LevelSprites.OfType<SmartSkull>().Count() == 0
-			    && LastSmartSkullKillTime + 10 < gameTime)
+			    && !LevelSprites.OfType<SmartSkull>().Any()
+			    && lastSmartSkullKillTime + 10 < gameTime)
 			{
-				SmartSkull skull = new SmartSkull(this);
+				var skull = new SmartSkull(this);
 				skull.SetLoc_SomewhereAboveTop();
 				skull.Killed += skull_Killed;
 			}
@@ -132,7 +132,7 @@ namespace Munchies
 
 		private void skull_Killed(object sender, EventArgs e)
 		{
-			LastSmartSkullKillTime = Game.GameTime;
+			lastSmartSkullKillTime = Game.GameTime;
 		}
 
 		#endregion
@@ -140,14 +140,14 @@ namespace Munchies
 
 		#region Food & Treat Spawning
 
-		private int TotalNumFoodToSpawn;
-		private int MaxNumSimultaneousFood;
-		private double LastFastFoodKillTime;
+		private readonly int totalNumFoodToSpawn;
+		private readonly int maxNumSimultaneousFood;
+		private double lastFastFoodKillTime;
 
 		internal void Update_CheckFoodSpawns(double gameTime, double elapsedTime)
 		{
-			while (LevelSprites.OfType<PlainFood>().Count() < MaxNumSimultaneousFood
-			       && FoodSpawned < TotalNumFoodToSpawn)
+			while (LevelSprites.OfType<PlainFood>().Count() < maxNumSimultaneousFood
+			       && FoodSpawned < totalNumFoodToSpawn)
 			{
 				PlainFood food = new PlainFood(this, LevelNumber);
 				food.SetLoc_OnRandomEdge();
@@ -155,8 +155,8 @@ namespace Munchies
 
 			if (LevelNumber >= 4
 			    && LevelSprites.OfType<PlainFood>().Count() > 2
-			    && LevelSprites.OfType<FastFood>().Count() == 0
-			    && LastFastFoodKillTime + 5 < gameTime)
+			    && !LevelSprites.OfType<FastFood>().Any()
+			    && lastFastFoodKillTime + 5 < gameTime)
 			{
 				FastFood food = new FastFood(this, LevelNumber);
 				food.SetLoc_OnRandomEdge();
@@ -164,13 +164,13 @@ namespace Munchies
 			}
 
 
-			if (LevelSprites.OfType<Food>().Count() == 0)
+			if (!LevelSprites.OfType<Food>().Any())
 				ShowExitAndAllowEnding();
 		}
 
 		private void FastFood_Killed(object sender, EventArgs e)
 		{
-			LastFastFoodKillTime = Game.GameTime;
+			lastFastFoodKillTime = Game.GameTime;
 		}
 
 
@@ -189,16 +189,25 @@ namespace Munchies
 			{
 				Treat spawn;
 
-				switch (SpawnRandomizer.PickSpawn(new int[]
+				switch (SpawnRandomizer.PickSpawn(new[]
 				{
-					60, // 0 Desert
+					// 0 Desert
+					60,
 
 					// 1 Peas (spawn chance increased below 10 peas)
-					LevelSprites.OfType<Peas>().Any() ? 0 : 30 + Math.Max(0, 30 - Game.Melvin.Peas * 3),
-					Game.Melvin.ButterStage > 0 || LevelSprites.OfType<Butter>().Any() ? 0 : 15, // 2 Butter
-					Game.Melvin.Salt || LevelSprites.OfType<Salt>().Any() ? 0 : 10, // 3 Salt
-					Game.Melvin.Pepper || LevelSprites.OfType<Pepper>().Any() ? 0 : 10, // 4 Pepper
-					3, // 5 Coffee
+					LevelSprites.OfType<Peas>().Any() ? 0 : 30 + Math.Max(0, 30 - Game.Melvin.Peas * 3), 
+
+					// 2 Butter
+					Game.Melvin.ButterStage > 0 || LevelSprites.OfType<Butter>().Any() ? 0 : 15, 
+
+					// 3 Salt
+					Game.Melvin.Salt || LevelSprites.OfType<Salt>().Any() ? 0 : 10, 
+
+					// 4 Pepper
+					Game.Melvin.Pepper || LevelSprites.OfType<Pepper>().Any() ? 0 : 10, 
+
+					// 5 Coffee
+					3, 
 				}))
 				{
 					case 0:

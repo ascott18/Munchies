@@ -60,7 +60,7 @@ namespace Munchies
 		internal static Image GetStatusBarImage(int Width, int Height)
 		{
 			// Create the status that we are going to be drawing
-			int SideWidth = 7;
+			const int SideWidth = 7;
 			Image result = new Bitmap(Width, Height);
 
 			// Compose the image that we will drawn
@@ -71,14 +71,14 @@ namespace Munchies
 				using (Bitmap source = new Bitmap(sourceImage))
 				{
 					// Determine and create the images that make up the background
-					Image leftImage = (Image)source.Clone(
+					Image leftImage = source.Clone(
 						new Rectangle(0, 0, SideWidth, Height), source.PixelFormat);
 
-					Image rightImage = (Image)source.Clone(
+					Image rightImage = source.Clone(
 						new Rectangle(sourceImage.Size.Width - SideWidth, 0, SideWidth, Height),
 						source.PixelFormat);
 
-					Image centerStrip = (Image)source.Clone(
+					Image centerStrip = source.Clone(
 						new Rectangle(SideWidth + 1, 0, 1, Height), source.PixelFormat);
 
 					// Draw the left and right sides

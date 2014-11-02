@@ -60,48 +60,4 @@ namespace Munchies
 			Name = "Melvin";
 		}
 	}
-
-	public class ScoreManager
-	{
-		public Scores Scores;
-
-		public readonly Game.GameDifficulty Difficulty;
-		public readonly Size GameSize;
-
-		public readonly string SettingIdentifier;
-
-
-		#region Construction
-
-		private static List<ScoreManager> AllManagers = new List<ScoreManager>();
-
-		//internal static ScoreManager GetScoreManager(Game.GameDifficulty difficulty, Size gameSize)
-		//{
-		//    var matches = AllManagers
-		//        .Where(sm => sm.Difficulty == difficulty && sm.GameSize == gameSize);
-
-		//    if (matches.Count() == 0)
-		//       return new ScoreManager(difficulty, gameSize);
-
-		//    return matches.First();
-		//}
-
-		//private ScoreManager(Game.GameDifficulty difficulty, Size gameSize)
-		//{
-		//    Difficulty = difficulty;
-		//    GameSize = gameSize;
-
-		//    SettingIdentifier = string.Format("Scores.{0}.{1}", difficulty, gameSize);
-
-		//    Program.Settings.DeclareDefault(SettingIdentifier, () => new Scores(difficulty, gameSize));
-
-		//    Scores = (Scores)Program.Settings.GetSetting(SettingIdentifier);
-
-		//  //  Program.Settings.SetSetting(SettingIdentifier, Scores);
-
-		//    AllManagers.Add(this);
-		//}
-
-		#endregion
-	}
 }

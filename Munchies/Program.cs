@@ -24,16 +24,16 @@ namespace Munchies
 		{
 			set
 			{
-				Program.Settings.SetSetting("ContentSize", value);
+				Settings.SetSetting("ContentSize", value);
 
 				if (SizeSettingChanged != null)
 					SizeSettingChanged(null, new EventArgs());
 			}
 			get
 			{
-				Program.Settings.DeclareDefault("ContentSize", new Size(640, 480));
+				Settings.DeclareDefault("ContentSize", new Size(640, 480));
 
-				return (Size)Program.Settings.GetSetting("ContentSize");
+				return (Size)Settings.GetSetting("ContentSize");
 			}
 		}
 
@@ -76,14 +76,13 @@ namespace Munchies
 
 		private static void UnhandledException(Exception ex)
 		{
-			StreamWriter sw;
 			DateTime dtLogFileCreated = DateTime.Now;
 
 			try
 			{
-				sw = new StreamWriter("crash-" + dtLogFileCreated.Year + dtLogFileCreated.Month
-				                      + dtLogFileCreated.Day + "-" + dtLogFileCreated.Hour
-				                      + dtLogFileCreated.Minute + dtLogFileCreated.Second + ".txt");
+				StreamWriter sw = new StreamWriter("crash-" + dtLogFileCreated.Year + dtLogFileCreated.Month
+				                                   + dtLogFileCreated.Day + "-" + dtLogFileCreated.Hour
+				                                   + dtLogFileCreated.Minute + dtLogFileCreated.Second + ".txt");
 
 				sw.WriteLine("### Crash ###");
 				sw.WriteLine(ex.ToString());

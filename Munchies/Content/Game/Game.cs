@@ -97,7 +97,7 @@ namespace Munchies
 			SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
 			// The game update engine
-			Paint += new System.Windows.Forms.PaintEventHandler(this.Engine);
+			Paint += Engine;
 
 			Click += Game_Click;
 
@@ -161,27 +161,27 @@ namespace Munchies
 		}
 
 
-		private static Dictionary<string, Image> statusDisplays = new Dictionary<string, Image>();
+		private static readonly Dictionary<string, Image> statusDisplays = new Dictionary<string, Image>();
 
-		private static Image GetStatusDisplay(Graphics graphics, string Text)
+		private static Image GetStatusDisplay(Graphics graphics, string text)
 		{
 			Image result;
 
 			// See if we've already made this status display.
-			if (statusDisplays.TryGetValue(Text, out result))
+			if (statusDisplays.TryGetValue(text, out result))
 				return result;
 
 			// Set up font. 
 			Font stringFont = new Font("Arial", 18);
 
 			// Measure the string.
-			SizeF stringSize = graphics.MeasureString(Text, stringFont);
+			SizeF stringSize = graphics.MeasureString(text, stringFont);
 
 
 			// Create the status that we are going to be drawing
-			int Padding = 30;
-			int Height = 42;
-			int SideWidth = 18;
+			const int Padding = 30;
+			const int Height = 42;
+			const int SideWidth = 18;
 			result = new Bitmap((int)stringSize.Width + Padding, Height);
 
 			// Compose the image that we will drawn
@@ -192,14 +192,14 @@ namespace Munchies
 				using (Bitmap source = new Bitmap(sourceImage))
 				{
 					// Determine and create the images that make up the background
-					Image leftImage = (Image)source.Clone(
+					Image leftImage = source.Clone(
 						new Rectangle(0, 0, SideWidth, Height), source.PixelFormat);
 
-					Image rightImage = (Image)source.Clone(
+					Image rightImage = source.Clone(
 						new Rectangle(sourceImage.Size.Width - SideWidth, 0, SideWidth, Height),
 						source.PixelFormat);
 
-					Image centerStrip = (Image)source.Clone(
+					Image centerStrip = source.Clone(
 						new Rectangle(SideWidth + 1, 0, 1, Height), source.PixelFormat);
 
 					// Draw the left and right sides
@@ -213,16 +213,16 @@ namespace Munchies
 
 
 				// Draw string to the image.
-				g.DrawString(Text, stringFont, Brushes.Black, new PointF(Padding / 2, (result.Size - stringSize).Height / 2 + 1));
+				g.DrawString(text, stringFont, Brushes.Black, new PointF(Padding / 2, (result.Size - stringSize).Height / 2 + 1));
 			}
 
-			statusDisplays[Text] = result;
+			statusDisplays[text] = result;
 			return result;
 		}
 
-		private void DrawStatusDisplay(Graphics graphics, string Text)
+		private void DrawStatusDisplay(Graphics graphics, string text)
 		{
-			var statusDisplay = GetStatusDisplay(graphics, Text);
+			var statusDisplay = GetStatusDisplay(graphics, text);
 
 			// Draw the final image.
 			graphics.DrawImage(statusDisplay,
@@ -271,7 +271,7 @@ namespace Munchies
 
 
 			//Force the next Paint()
-			this.Invalidate();
+			Invalidate();
 		}
 
 
@@ -293,7 +293,7 @@ namespace Munchies
 
 			Cursor.Hide();
 
-			this.Invalidate();
+			Invalidate();
 
 			if (OnPlay != null)
 				OnPlay(this, new EventArgs());

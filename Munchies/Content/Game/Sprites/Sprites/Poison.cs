@@ -9,7 +9,7 @@ namespace Munchies
 {
 	internal class Poison : Enemy
 	{
-		private float Gravity = 550;
+		private const float Gravity = 550;
 
 		public Poison(Level levelInstance, Spoon spoon)
 			: base(levelInstance)

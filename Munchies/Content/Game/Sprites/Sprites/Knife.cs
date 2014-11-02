@@ -11,7 +11,7 @@ namespace Munchies
 		public int Direction;
 
 		private int NumShots;
-		private int MaxNumShots = 5;
+		private const int MaxNumShots = 5;
 
 		public new static int SpawnFrequency = 20;
 

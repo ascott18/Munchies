@@ -56,16 +56,16 @@ namespace Munchies
 			var matches = AllModes
 				.Where(gm => gm.GameDifficulty == gameDifficulty && gm.ContainerSize == containerSize);
 
-			if (matches.Count() == 0)
-			{
-				string SettingIdentifier = GetSettingIdentifier(gameDifficulty, containerSize);
+			var first = matches.FirstOrDefault();
+			if (first != null)
+				return first;
 
-				Program.Settings.DeclareDefault(SettingIdentifier, () => new GameMode(gameDifficulty, containerSize));
+			// Create a GameMode if there wasn't an appropriate one.
+			string settingIdentifier = GetSettingIdentifier(gameDifficulty, containerSize);
 
-				return (GameMode)Program.Settings.GetSetting(SettingIdentifier);
-			}
+			Program.Settings.DeclareDefault(settingIdentifier, () => new GameMode(gameDifficulty, containerSize));
 
-			return matches.First();
+			return (GameMode)Program.Settings.GetSetting(settingIdentifier);
 		}
 
 		public static string GetSettingIdentifier(Game.GameDifficulty gameDifficulty, Size containerSize)

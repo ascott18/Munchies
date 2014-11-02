@@ -47,8 +47,8 @@ namespace AndrewScott.SettingsSerializer
 
             if (Data.Settings.ContainsKey(key))
                 return Data.Settings[key];
-            else
-                return null;
+
+	        return null;
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace AndrewScott.SettingsSerializer
 
             FileInfo fi = new FileInfo(FileName);
             if (!fi.Directory.Exists)
-                System.IO.Directory.CreateDirectory(fi.DirectoryName);
+                Directory.CreateDirectory(fi.DirectoryName);
 
 
             IFormatter formatter = new BinaryFormatter();

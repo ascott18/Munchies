@@ -211,7 +211,7 @@ namespace Munchies
 
 			// Show Scores
 			Program.CommandManager.Add(new Command(
-				                           () => ShowScores(),
+				                           ShowScores,
 				                           showScoresToolStripMenuItem
 				                           )
 			{
@@ -222,7 +222,7 @@ namespace Munchies
 			Program.CommandManager.Add(new Command(
 				                           () =>
 				                           {
-					                           ScoreResetConfirmDialog dialog = new ScoreResetConfirmDialog();
+					                           var dialog = new ScoreResetConfirmDialog();
 
 					                           if (dialog.ShowDialog(this) == DialogResult.OK)
 						                           ShowScores();
@@ -322,6 +322,9 @@ namespace Munchies
 				// creating tooltip entries and Command objects for each.
 				foreach (Size resolution in Resolutions)
 				{
+					// Accessing foreach variables within closures is bad.
+					var res = resolution;
+
 					// Create the tooltip items for each resolution
 					ToolStripMenuItem menuItem = new ToolStripMenuItem();
 
@@ -332,11 +335,11 @@ namespace Munchies
 
 					// Create the command handler for the resolution.
 					Program.CommandManager.Add(new Command(
-						                           () => Program.ContentSizeSetting = resolution,
+						                           () => Program.ContentSizeSetting = res,
 						                           menuItem
 						                           )
 					{
-						Checked = () => Program.ContentSizeSetting == resolution,
+						Checked = () => Program.ContentSizeSetting == res,
 						Enabled = NoGameInProgress,
 					});
 				}

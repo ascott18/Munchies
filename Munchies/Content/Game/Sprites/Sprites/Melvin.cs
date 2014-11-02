@@ -63,12 +63,12 @@ namespace Munchies
 			Game.GameContainer.toolStripStatus_Peas.Text = text;
 		}
 
-		private static string[] butterImageNames = new string[]
+		private static readonly string[] butterImageNames =
 		{
 			"Shield1", "Shield2", "Shield3", "Shield4"
 		};
 
-		private static string[] melvinImageNames = new string[]
+		private static readonly string[] melvinImageNames =
 		{
 			"MelvinS",
 			"MelvinL1", "MelvinL2", "MelvinL3", "MelvinL4",
@@ -297,7 +297,7 @@ namespace Munchies
 
 		protected bool CanMove()
 		{
-			float MinVelocity = 14;
+			const float MinVelocity = 14;
 
 			return Math.Abs(Velocity.X) > MinVelocity || Math.Abs(Velocity.Y) > MinVelocity;
 		}
@@ -307,12 +307,7 @@ namespace Munchies
 			FacingDirection = "S";
 
 			if (CanMove())
-			{
-				if (Velocity.X < 0)
-					FacingDirection = "L";
-				else
-					FacingDirection = "R";
-			}
+				FacingDirection = Velocity.X < 0 ? "L" : "R";
 		}
 
 		public override void Draw(Graphics graphics)

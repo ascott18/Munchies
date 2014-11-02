@@ -8,7 +8,7 @@ namespace Munchies
 {
 	internal class SmartSkull : Skull
 	{
-		private float MaxVelocity;
+		private readonly float maxVelocity;
 
 		public SmartSkull(Level levelInstance)
 			: base(levelInstance)
@@ -21,13 +21,13 @@ namespace Munchies
 			SetSizeToImage(string.Format(SkullImageName, 1));
 
 
-			MaxVelocity = 50 + levelInstance.LevelNumber;
+			maxVelocity = 50 + levelInstance.LevelNumber;
 		}
 
 
 		public override void Update(double gameTime, double elapsedTime)
 		{
-			Update_VelocityTowardsMelvin(MaxVelocity, 10000);
+			Update_VelocityTowardsMelvin(maxVelocity, 10000);
 
 			Update_MoveVelocity(elapsedTime);
 		}
