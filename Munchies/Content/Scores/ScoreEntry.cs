@@ -9,36 +9,37 @@ using System.Windows.Forms;
 
 namespace Munchies
 {
-    public partial class ScoreEntry : UserControl
-    {
-        Font NormalFont = new Font("Microsoft Sans Serif", 9F);
-        Font HighlightFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+	public partial class ScoreEntry : UserControl
+	{
+		private Font NormalFont = new Font("Microsoft Sans Serif", 9F);
+		private Font HighlightFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
 
-        private bool highlighted;
-        public bool Highlighted
-        {
-            get { return highlighted; }
-            set 
-            { 
-                highlighted = value;
+		private bool highlighted;
 
-                if (highlighted)
-                {
-                    name.Font = HighlightFont;
-                    name.ForeColor = Color.Red;
-                }
-                else
-                {
-                    name.Font = NormalFont;
-                    name.ForeColor = SystemColors.ControlText;
-                }
-            }
-        }
+		public bool Highlighted
+		{
+			get { return highlighted; }
+			set
+			{
+				highlighted = value;
+
+				if (highlighted)
+				{
+					name.Font = HighlightFont;
+					name.ForeColor = Color.Red;
+				}
+				else
+				{
+					name.Font = NormalFont;
+					name.ForeColor = SystemColors.ControlText;
+				}
+			}
+		}
 
 
-        public ScoreEntry()
-        {
-            InitializeComponent();
-        }
-    }
+		public ScoreEntry()
+		{
+			InitializeComponent();
+		}
+	}
 }

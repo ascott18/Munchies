@@ -9,13 +9,13 @@ using System.Windows.Forms;
 
 namespace Munchies
 {
-    public partial class DialogBase : Form
-    {
-        public DialogBase()
-        {
-            InitializeComponent();
+	public partial class DialogBase : Form
+	{
+		public DialogBase()
+		{
+			InitializeComponent();
 
-            Text = "";
-        }
-    }
+			Text = "";
+		}
+	}
 }

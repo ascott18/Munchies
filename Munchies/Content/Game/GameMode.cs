@@ -8,74 +8,69 @@ using AndrewScott.SimpleCommandManager;
 
 namespace Munchies
 {
-    [Serializable]
-    public class GameMode
-    {
-        public static Game.GameDifficulty DifficultySetting
-        {
-            set
-            {
-                Program.Settings.SetSetting("GameDifficulty", value);
-            }
-            get
-            {
-                Program.Settings.DeclareDefault("GameDifficulty", Game.GameDifficulty.Beginner);
+	[Serializable]
+	public class GameMode
+	{
+		public static Game.GameDifficulty DifficultySetting
+		{
+			set { Program.Settings.SetSetting("GameDifficulty", value); }
+			get
+			{
+				Program.Settings.DeclareDefault("GameDifficulty", Game.GameDifficulty.Beginner);
 
-                return (Game.GameDifficulty)Program.Settings.GetSetting("GameDifficulty");
-            }
-        }
+				return (Game.GameDifficulty)Program.Settings.GetSetting("GameDifficulty");
+			}
+		}
 
-        public static GameMode GameModeFromSettings
-        {
-            get
-            {
-                return GetGameMode(DifficultySetting, Program.ContentSizeSetting);
-            }
-        }
+		public static GameMode GameModeFromSettings
+		{
+			get { return GetGameMode(DifficultySetting, Program.ContentSizeSetting); }
+		}
 
 
-        public Scores Scores = new Scores();
+		public Scores Scores = new Scores();
 
-        public readonly Game.GameDifficulty GameDifficulty;
-        public readonly Size ContainerSize;
+		public readonly Game.GameDifficulty GameDifficulty;
+		public readonly Size ContainerSize;
 
-        public readonly string SettingIdentifier;
+		public readonly string SettingIdentifier;
 
-        public int StartingLevel = 1;
-        public int HighestLevelAttained = 1;
+		public int StartingLevel = 1;
+		public int HighestLevelAttained = 1;
 
-        private GameMode(Game.GameDifficulty gameDifficulty, Size containerSize)
-        {
-            GameDifficulty = gameDifficulty;
-            ContainerSize = containerSize;
+		private GameMode(Game.GameDifficulty gameDifficulty, Size containerSize)
+		{
+			GameDifficulty = gameDifficulty;
+			ContainerSize = containerSize;
 
-            SettingIdentifier = GetSettingIdentifier(gameDifficulty, containerSize);
+			SettingIdentifier = GetSettingIdentifier(gameDifficulty, containerSize);
 
-            AllModes.Add(this);
-        }
+			AllModes.Add(this);
+		}
 
 
-        private static List<GameMode> AllModes = new List<GameMode>();
-        public static GameMode GetGameMode(Game.GameDifficulty gameDifficulty, Size containerSize)
-        {
-            var matches = AllModes
-                   .Where(gm => gm.GameDifficulty == gameDifficulty && gm.ContainerSize == containerSize);
+		private static List<GameMode> AllModes = new List<GameMode>();
 
-            if (matches.Count() == 0)
-            {
-                string SettingIdentifier = GetSettingIdentifier(gameDifficulty, containerSize);
+		public static GameMode GetGameMode(Game.GameDifficulty gameDifficulty, Size containerSize)
+		{
+			var matches = AllModes
+				.Where(gm => gm.GameDifficulty == gameDifficulty && gm.ContainerSize == containerSize);
 
-                Program.Settings.DeclareDefault(SettingIdentifier, () => new GameMode(gameDifficulty, containerSize));
+			if (matches.Count() == 0)
+			{
+				string SettingIdentifier = GetSettingIdentifier(gameDifficulty, containerSize);
 
-                return (GameMode)Program.Settings.GetSetting(SettingIdentifier);
-            }
+				Program.Settings.DeclareDefault(SettingIdentifier, () => new GameMode(gameDifficulty, containerSize));
 
-            return matches.First();
-        }
+				return (GameMode)Program.Settings.GetSetting(SettingIdentifier);
+			}
 
-        public static string GetSettingIdentifier(Game.GameDifficulty gameDifficulty, Size containerSize)
-        {
-            return string.Format("GameMode.{0}.{1}", gameDifficulty, containerSize);
-        }
-    }
+			return matches.First();
+		}
+
+		public static string GetSettingIdentifier(Game.GameDifficulty gameDifficulty, Size containerSize)
+		{
+			return string.Format("GameMode.{0}.{1}", gameDifficulty, containerSize);
+		}
+	}
 }

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Munchies
 {
-    abstract class Utensil : Enemy
-    {
-        public static int SpawnFrequency = 10;
+	internal abstract class Utensil : Enemy
+	{
+		public static int SpawnFrequency = 10;
 
-        public static int MinimumLevel = 1;
+		public static int MinimumLevel = 1;
 
-        public Utensil(Level levelInstance)
-            : base(levelInstance)
-        {
-            AudioManager.GetSound("Munchies.Resources.Sounds.RedAlert.ogg").Play();
-        }
-    }
+		public Utensil(Level levelInstance)
+			: base(levelInstance)
+		{
+			AudioManager.GetSound("Munchies.Resources.Sounds.RedAlert.ogg").Play();
+		}
+	}
 }

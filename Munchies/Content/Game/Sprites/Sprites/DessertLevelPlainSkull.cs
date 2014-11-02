@@ -5,19 +5,19 @@ using System.Text;
 
 namespace Munchies
 {
-    class DessertLevelPlainSkull : PlainSkull
-    {
-        public DessertLevelPlainSkull(DessertLevel levelInstance)
-            : base(levelInstance)
-        {
-        }
+	internal class DessertLevelPlainSkull : PlainSkull
+	{
+		public DessertLevelPlainSkull(DessertLevel levelInstance)
+			: base(levelInstance)
+		{
+		}
 
-        public override void Update(double gameTime, double elapsedTime)
-        {
-            if (IsSpawning && !TestEdgeCollision().HasFlag(EdgeCollisionTypes.Top))
-                IsSpawning = false;
+		public override void Update(double gameTime, double elapsedTime)
+		{
+			if (IsSpawning && !TestEdgeCollision().HasFlag(EdgeCollisionTypes.Top))
+				IsSpawning = false;
 
-            Update_MoveVelocity(elapsedTime);
-        }
-    }
+			Update_MoveVelocity(elapsedTime);
+		}
+	}
 }

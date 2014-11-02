@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Munchies
 {
-    class Peas : Treat
-    {
-        public Peas(Level levelInstance)
-            : base(levelInstance)
-        {
-            ImageName = "Peas";
-            PreloadImages(ImageName);
-            SetSizeToImage(ImageName);
-        }
-    }
+	internal class Peas : Treat
+	{
+		public Peas(Level levelInstance)
+			: base(levelInstance)
+		{
+			ImageName = "Peas";
+			PreloadImages(ImageName);
+			SetSizeToImage(ImageName);
+		}
+	}
 }

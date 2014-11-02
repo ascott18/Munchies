@@ -13,105 +13,107 @@ using System.IO;
 
 namespace Munchies
 {
-    static class Program
-    {
+	internal static class Program
+	{
+		internal static Settings Settings;
+		internal static CommandManager CommandManager;
 
-        static internal Settings Settings;
-        static internal CommandManager CommandManager;
+		public static event EventHandler SizeSettingChanged;
 
-        public static event EventHandler SizeSettingChanged;
-        public static Size ContentSizeSetting
-        {
-            set
-            {
-                Program.Settings.SetSetting("ContentSize", value);
+		public static Size ContentSizeSetting
+		{
+			set
+			{
+				Program.Settings.SetSetting("ContentSize", value);
 
-                if (SizeSettingChanged != null)
-                    SizeSettingChanged(null, new EventArgs());
-            }
-            get
-            {
-                Program.Settings.DeclareDefault("ContentSize", new Size(640, 480));
+				if (SizeSettingChanged != null)
+					SizeSettingChanged(null, new EventArgs());
+			}
+			get
+			{
+				Program.Settings.DeclareDefault("ContentSize", new Size(640, 480));
 
-                return (Size)Program.Settings.GetSetting("ContentSize");
-            }
-        }
+				return (Size)Program.Settings.GetSetting("ContentSize");
+			}
+		}
 
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            //AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
+		/// <summary>
+		/// The main entry point for the application.
+		/// </summary>
+		[STAThread]
+		private static void Main()
+		{
+			//AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
 
-            // Crash reporting
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            Application.ThreadException += Application_ThreadException;
+			// Crash reporting
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+			Application.ThreadException += Application_ThreadException;
 
-            // Initialize settings
-            Settings = new Settings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Munchies\settings", true);
-            Application.ApplicationExit += Application_ApplicationExit;
+			// Initialize settings
+			Settings =
+				new Settings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Munchies\settings",
+				             true);
+			Application.ApplicationExit += Application_ApplicationExit;
 
-            // Initialize command manager
-            CommandManager = new CommandManager();
+			// Initialize command manager
+			CommandManager = new CommandManager();
 
-            // Run the program
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
-        }
+			// Run the program
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new MainWindow());
+		}
 
-        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
-        {
-            UnhandledException(e.Exception);
-        }
+		private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+		{
+			UnhandledException(e.Exception);
+		}
 
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            UnhandledException((Exception)e.ExceptionObject);
-        }
+		private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			UnhandledException((Exception)e.ExceptionObject);
+		}
 
-        static void UnhandledException(Exception ex)
-        {
-            StreamWriter sw;
-            DateTime dtLogFileCreated = DateTime.Now;
+		private static void UnhandledException(Exception ex)
+		{
+			StreamWriter sw;
+			DateTime dtLogFileCreated = DateTime.Now;
 
-            try
-            {
-                sw = new StreamWriter("crash-" + dtLogFileCreated.Year + dtLogFileCreated.Month
-                            + dtLogFileCreated.Day + "-" + dtLogFileCreated.Hour
-                            + dtLogFileCreated.Minute + dtLogFileCreated.Second + ".txt");
-                
-                sw.WriteLine("### Crash ###");
-                sw.WriteLine(ex.ToString());
-                sw.Close();
-            }
-            finally
-            {
-                Application.Exit();
-            }
-        }
+			try
+			{
+				sw = new StreamWriter("crash-" + dtLogFileCreated.Year + dtLogFileCreated.Month
+				                      + dtLogFileCreated.Day + "-" + dtLogFileCreated.Hour
+				                      + dtLogFileCreated.Minute + dtLogFileCreated.Second + ".txt");
 
-        static void Application_ApplicationExit(object sender, EventArgs e)
-        {
-            Settings.WriteToFile();
-        }
+				sw.WriteLine("### Crash ###");
+				sw.WriteLine(ex.ToString());
+				sw.Close();
+			}
+			finally
+			{
+				Application.Exit();
+			}
+		}
 
-        //static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-        //{
-        //    string dllName = args.Name.Contains(',') ? args.Name.Substring(0, args.Name.IndexOf(',')) : args.Name.Replace(".dll", "");
-            
-        //    dllName = dllName.Replace(".", "_");
+		private static void Application_ApplicationExit(object sender, EventArgs e)
+		{
+			Settings.WriteToFile();
+		}
 
-        //    if (dllName.EndsWith("_resources")) return null;
+		//static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+		//{
+		//    string dllName = args.Name.Contains(',') ? args.Name.Substring(0, args.Name.IndexOf(',')) : args.Name.Replace(".dll", "");
 
-        //    byte[] bytes = (byte[])Properties.Resources.ResourceManager.GetObject(dllName);
+		//    dllName = dllName.Replace(".", "_");
 
-        //    if (bytes != null)
-        //        return Assembly.Load(bytes);
-        //    else
-        //        return Assembly.GetCallingAssembly();
-        //}
-    }
+		//    if (dllName.EndsWith("_resources")) return null;
+
+		//    byte[] bytes = (byte[])Properties.Resources.ResourceManager.GetObject(dllName);
+
+		//    if (bytes != null)
+		//        return Assembly.Load(bytes);
+		//    else
+		//        return Assembly.GetCallingAssembly();
+		//}
+	}
 }

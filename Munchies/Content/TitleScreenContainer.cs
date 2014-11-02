@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace Munchies
 {
-    public partial class TitleScreenContainer : ContentContainer
-    {
-        public TitleScreenContainer()
-        {
-            InitializeComponent();
-        }
-    }
+	public partial class TitleScreenContainer : ContentContainer
+	{
+		public TitleScreenContainer()
+		{
+			InitializeComponent();
+		}
+	}
 }

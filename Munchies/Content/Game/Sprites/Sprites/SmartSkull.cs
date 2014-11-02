@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace Munchies
 {
-    class SmartSkull : Skull
-    {
-        float MaxVelocity;
+	internal class SmartSkull : Skull
+	{
+		private float MaxVelocity;
 
-        public SmartSkull(Level levelInstance)
-            : base(levelInstance)
-        {
-            SkullImageName = "SmartSkull{0}";
+		public SmartSkull(Level levelInstance)
+			: base(levelInstance)
+		{
+			SkullImageName = "SmartSkull{0}";
 
-            for (int i = 1; i <= 4; i++)
-                PreloadImages(string.Format(SkullImageName, i));
+			for (int i = 1; i <= 4; i++)
+				PreloadImages(string.Format(SkullImageName, i));
 
-            SetSizeToImage(string.Format(SkullImageName, 1));
-
-
-            MaxVelocity = 50 + levelInstance.LevelNumber;
-        }
+			SetSizeToImage(string.Format(SkullImageName, 1));
 
 
-        public override void Update(double gameTime, double elapsedTime)
-        {
-            Update_VelocityTowardsMelvin(MaxVelocity, 10000);
+			MaxVelocity = 50 + levelInstance.LevelNumber;
+		}
 
-            Update_MoveVelocity(elapsedTime);
-        }
-    }
+
+		public override void Update(double gameTime, double elapsedTime)
+		{
+			Update_VelocityTowardsMelvin(MaxVelocity, 10000);
+
+			Update_MoveVelocity(elapsedTime);
+		}
+	}
 }

@@ -9,16 +9,16 @@ using System.Windows.Forms;
 
 namespace Munchies.HelpDialogs
 {
-    public partial class HelpBonusesDialog : DialogBase
-    {
-        public HelpBonusesDialog()
-        {
-            InitializeComponent();
-        }
+	public partial class HelpBonusesDialog : DialogBase
+	{
+		public HelpBonusesDialog()
+		{
+			InitializeComponent();
+		}
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-    }
+		private void button1_Click(object sender, EventArgs e)
+		{
+			Close();
+		}
+	}
 }

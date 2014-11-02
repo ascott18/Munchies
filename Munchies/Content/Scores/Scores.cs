@@ -10,101 +10,98 @@ using System.Drawing;
 
 namespace Munchies
 {
+	[Serializable]
+	public class Scores : List<Score>
+	{
+		[NonSerialized] public const int MaxNumScores = 10;
 
-    [Serializable]
-    public class Scores : List<Score>
-    {
-        
-        [NonSerialized]
-        public const int MaxNumScores = 10;
+		public Scores()
+			: base(MaxNumScores)
+		{
+			for (int i = 0; i < MaxNumScores; i++)
+				Add(new Score());
+		}
 
-        public Scores()
-            : base(MaxNumScores)
-        {
-            for (int i = 0; i < MaxNumScores; i++)
-                Add(new Score());
-        }
+		public bool IsScoreRankworthy(int points)
+		{
+			return points > this.Last().Points;
+		}
 
-        public bool IsScoreRankworthy(int points)
-        {
-            return points > this.Last().Points;
-        }
+		public void AddScore(Score score)
+		{
+			if (!IsScoreRankworthy(score.Points))
+				return;
 
-        public void AddScore(Score score)
-        {
-            if (!IsScoreRankworthy(score.Points))
-                return;
+			Remove(this.Last());
 
-            Remove(this.Last());
+			Add(score);
 
-            Add(score);
+			var Ordered = this.OrderByDescending(s => s.Points).ToList();
 
-            var Ordered = this.OrderByDescending(s => s.Points).ToList();
+			Clear();
 
-            Clear();
+			AddRange(Ordered);
 
-            AddRange(Ordered);
+			// Save();
+		}
+	}
 
-            // Save();
-        }
+	[Serializable]
+	public class Score
+	{
+		public int Level { get; set; }
+		public int Points { get; set; }
+		public string Name { get; set; }
 
-    }
+		public Score()
+		{
+			Level = 1;
+			Points = 100;
+			Name = "Melvin";
+		}
+	}
 
-    [Serializable]
-    public class Score
-    {
-        public int Level { get; set; }
-        public int Points { get; set; }
-        public string Name { get; set; }
+	public class ScoreManager
+	{
+		public Scores Scores;
 
-        public Score()
-        {
-            Level = 1;
-            Points = 100;
-            Name = "Melvin";
-        }
-    }
+		public readonly Game.GameDifficulty Difficulty;
+		public readonly Size GameSize;
 
-    public class ScoreManager
-    {
-        public Scores Scores;
+		public readonly string SettingIdentifier;
 
-        public readonly Game.GameDifficulty Difficulty;
-        public readonly Size GameSize;
 
-        public readonly string SettingIdentifier;
+		#region Construction
 
-        #region Construction
+		private static List<ScoreManager> AllManagers = new List<ScoreManager>();
 
-        private static List<ScoreManager> AllManagers = new List<ScoreManager>();
+		//internal static ScoreManager GetScoreManager(Game.GameDifficulty difficulty, Size gameSize)
+		//{
+		//    var matches = AllManagers
+		//        .Where(sm => sm.Difficulty == difficulty && sm.GameSize == gameSize);
 
-        //internal static ScoreManager GetScoreManager(Game.GameDifficulty difficulty, Size gameSize)
-        //{
-        //    var matches = AllManagers
-        //        .Where(sm => sm.Difficulty == difficulty && sm.GameSize == gameSize);
+		//    if (matches.Count() == 0)
+		//       return new ScoreManager(difficulty, gameSize);
 
-        //    if (matches.Count() == 0)
-        //       return new ScoreManager(difficulty, gameSize);
+		//    return matches.First();
+		//}
 
-        //    return matches.First();
-        //}
+		//private ScoreManager(Game.GameDifficulty difficulty, Size gameSize)
+		//{
+		//    Difficulty = difficulty;
+		//    GameSize = gameSize;
 
-        //private ScoreManager(Game.GameDifficulty difficulty, Size gameSize)
-        //{
-        //    Difficulty = difficulty;
-        //    GameSize = gameSize;
+		//    SettingIdentifier = string.Format("Scores.{0}.{1}", difficulty, gameSize);
 
-        //    SettingIdentifier = string.Format("Scores.{0}.{1}", difficulty, gameSize);
+		//    Program.Settings.DeclareDefault(SettingIdentifier, () => new Scores(difficulty, gameSize));
 
-        //    Program.Settings.DeclareDefault(SettingIdentifier, () => new Scores(difficulty, gameSize));
+		//    Scores = (Scores)Program.Settings.GetSetting(SettingIdentifier);
 
-        //    Scores = (Scores)Program.Settings.GetSetting(SettingIdentifier);
+		//  //  Program.Settings.SetSetting(SettingIdentifier, Scores);
 
-        //  //  Program.Settings.SetSetting(SettingIdentifier, Scores);
+		//    AllManagers.Add(this);
+		//}
 
-        //    AllManagers.Add(this);
-        //}
-
-        #endregion
-    }
+		#endregion
+	}
 }

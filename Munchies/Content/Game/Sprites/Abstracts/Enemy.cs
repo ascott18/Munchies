@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Munchies
 {
-    abstract class Enemy : Sprite
-    {
-        public Enemy(Level levelInstance)
-            : base(levelInstance)
-        {
-
-        }
-    }
+	internal abstract class Enemy : Sprite
+	{
+		public Enemy(Level levelInstance)
+			: base(levelInstance)
+		{
+		}
+	}
 }

@@ -9,23 +9,23 @@ using System.Windows.Forms;
 
 namespace Munchies
 {
-    public partial class ScoreResetConfirmDialog : DialogBase
-    {
-        public ScoreResetConfirmDialog()
-        {
-            InitializeComponent();
-        }
+	public partial class ScoreResetConfirmDialog : DialogBase
+	{
+		public ScoreResetConfirmDialog()
+		{
+			InitializeComponent();
+		}
 
-        private void OK_Click(object sender, EventArgs e)
-        {
-            GameMode.GameModeFromSettings.Scores = new Scores();
+		private void OK_Click(object sender, EventArgs e)
+		{
+			GameMode.GameModeFromSettings.Scores = new Scores();
 
-            Close();
-        }
+			Close();
+		}
 
-        private void cancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-    }
+		private void cancel_Click(object sender, EventArgs e)
+		{
+			Close();
+		}
+	}
 }

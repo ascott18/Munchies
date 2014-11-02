@@ -5,35 +5,34 @@ using System.Text;
 
 namespace Munchies
 {
-    class Explosion : Sprite
-    {
-        const int NumExplosionStates = 6;
+	internal class Explosion : Sprite
+	{
+		private const int NumExplosionStates = 6;
 
-        public Explosion(Level levelInstance)
-            : base(levelInstance)
-        {
-            for (int i = 1; i <= NumExplosionStates; i++)
-                PreloadImages(string.Format("Explosion{0}", i));
+		public Explosion(Level levelInstance)
+			: base(levelInstance)
+		{
+			for (int i = 1; i <= NumExplosionStates; i++)
+				PreloadImages(string.Format("Explosion{0}", i));
 
-            ImageName = "Explosion1";
-            SetSizeToImage(ImageName);
+			ImageName = "Explosion1";
+			SetSizeToImage(ImageName);
 
-            AudioManager.GetSound("Munchies.Resources.Sounds.boom.ogg").Play();
-        }
+			AudioManager.GetSound("Munchies.Resources.Sounds.boom.ogg").Play();
+		}
 
-        private double Elapsed;
+		private double Elapsed;
 
-        public override void Update(double gameTime, double elapsedTime)
-        {
-            Elapsed += elapsedTime;
+		public override void Update(double gameTime, double elapsedTime)
+		{
+			Elapsed += elapsedTime;
 
-            int state = AnimationState.GetState(Elapsed, NumExplosionStates + 1, 50) + 1;
+			int state = AnimationState.GetState(Elapsed, NumExplosionStates + 1, 50) + 1;
 
-            if (state > NumExplosionStates)
-                Kill();
-            else
-                ImageName = string.Format("Explosion{0}", state);
-        }
-
-    }
+			if (state > NumExplosionStates)
+				Kill();
+			else
+				ImageName = string.Format("Explosion{0}", state);
+		}
+	}
 }
