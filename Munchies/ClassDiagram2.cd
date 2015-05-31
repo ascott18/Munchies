@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Munchies.ContentContainer" Collapsed="true">
+    <Position X="3" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Abstracts\ContentContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.DialogBase" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Abstracts\DialogBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Game" Collapsed="true">
+    <Position X="49" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAagAEAEQCAABgFAAAAIQgIJAiKEgCAC1iQEUBAAABA=</HashCode>
+      <FileName>Content\Game\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.GameContainer" Collapsed="true">
+    <Position X="3" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABACAASAQAAAEgAKCAAACAAkAQAgJAIgAAAAAAAE=</HashCode>
+      <FileName>Content\Game\GameContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.GameMode" Collapsed="true">
+    <Position X="50.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgQAAAAIIAAAwAAAAAAAiAAAAAIAAAQAAAAAABAAA=</HashCode>
+      <FileName>Content\Game\GameMode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.DessertLevel" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAACAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Levels\DesertLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.FoodLevel" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAQCAALIcAACAEAAAAAgAQAAEAAAAABAAAAAEgA=</HashCode>
+      <FileName>Content\Game\Levels\FoodLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Level" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAEIAAAAAAiBAAAAAAAAAAQggBEAABCAIAAAAgAA=</HashCode>
+      <FileName>Content\Game\Levels\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.LevelExit" Collapsed="true">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAgAAAABAAAAAA=</HashCode>
+      <FileName>Content\Game\Levels\LevelExit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Edible" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Abstracts\Edible.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Enemy" Collapsed="true">
+    <Position X="34" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Abstracts\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Food" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Abstracts\Food.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.PlainSkull" Collapsed="true">
+    <Position X="39.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Abstracts\PlainSkull.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Sprite" Collapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAQCACAAAshAggAAgRIAEQQiAAgABVRhAAQBAAA0AAA=</HashCode>
+      <FileName>Content\Game\Sprites\Abstracts\Sprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Treat" Collapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Abstracts\Treat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Butter" Collapsed="true">
+    <Position X="22.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Butter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Coffee" Collapsed="true">
+    <Position X="11.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Coffee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Dessert" Collapsed="true">
+    <Position X="13.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Desert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.DessertLevelPlainSkull" Collapsed="true">
+    <Position X="38.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\DessertLevelPlainSkull.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Explosion" Collapsed="true">
+    <Position X="43" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Explosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.FastFood" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\FastFood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.FoodLevelPlainSkull" Collapsed="true">
+    <Position X="40.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAEAAAIAAAAAAAAAAAAAgAAQAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\FoodLevelPlainSkull.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Fork" Collapsed="true">
+    <Position X="29.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAQAAAAICAAAAgAAAAAAAAAAAAAAAIAAACAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Fork.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Knife" Collapsed="true">
+    <Position X="31.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAAABAAAACAAAAgAAAAAAAAAAKAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Knife.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Melvin" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JARBQCAAQAQAIhgsACAgEBAAAAAAAACBAAAAAAAAAUA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Melvin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Pea" Collapsed="true">
+    <Position X="25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAAEAABAAAAAAAACAAAAAAAAAAAAAAAABAAAEA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Pea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Peas" Collapsed="true">
+    <Position X="16" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Peas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Pepper" Collapsed="true">
+    <Position X="18.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Pepper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.PlainFood" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\PlainFood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Poison" Collapsed="true">
+    <Position X="34" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Poison.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Salt" Collapsed="true">
+    <Position X="20.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Salt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Skull" Collapsed="true">
+    <Position X="38.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAACgACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Skull.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.SmartSkull" Collapsed="true">
+    <Position X="36.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\SmartSkull.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Spoon" Collapsed="true">
+    <Position X="27.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAYACAAAEAAAAAAAAAAAAAAAAAAIAIAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Spoon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Utensil" Collapsed="true">
+    <Position X="29.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Content\Game\Sprites\Sprites\Utensil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.HighScoreDialog" Collapsed="true">
+    <Position X="7.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACIAAACAAAIAAAAEEAAAAJAAAA=</HashCode>
+      <FileName>Content\Scores\HighScoreDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.ScoreContainer" Collapsed="true">
+    <Position X="5.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAQKAAACEAAADAAAACAQAAAABAAAAAIAAAAAA=</HashCode>
+      <FileName>Content\Scores\ScoreContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.ScoreEntry" Collapsed="true">
+    <Position X="45.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACABAACAASAAAAAAAACAAQACAAEMAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Content\Scores\ScoreEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.ScoreResetConfirmDialog" Collapsed="true">
+    <Position X="10" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAACAAABAAAACAAQACAAAAAgAAAAABAABAAAA=</HashCode>
+      <FileName>Content\Scores\ScoreResetConfirmDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Scores" Collapsed="true">
+    <Position X="47.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAFAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Scores\Scores.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Score" Collapsed="true">
+    <Position X="50.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Scores\Scores.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.TitleScreenContainer" Collapsed="true">
+    <Position X="0.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Content\TitleScreenContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.MainWindow" Collapsed="true">
+    <Position X="45.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQRwAP0CEKVWAQAAAgCSkgAGBAAAIAACigAAAwWEAEA=</HashCode>
+      <FileName>MainWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.SpawnRandomizer" Collapsed="true">
+    <Position X="50.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>MainWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Program" Collapsed="true">
+    <Position X="47.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAQAAAAAAAAAAAAAIAAICAgAAABAAAAAQ=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.AnimationState" Collapsed="true">
+    <Position X="45.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\AnimationState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.AudioManager" Collapsed="true">
+    <Position X="47.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAgAAAAAAAABQAAAAAAEAAIAAAAAAAABAIAAAQCAAQ=</HashCode>
+      <FileName>Utilities\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.HelpDialogs.HelpAboutDialog" Collapsed="true">
+    <Position X="12.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAIAAAAAEAAAABAAAA=</HashCode>
+      <FileName>Content\HelpDialogs\HelpAboutDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.HelpDialogs.HelpBonusesDialog" Collapsed="true">
+    <Position X="1" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAAAAAAACAAAACAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Content\HelpDialogs\HelpBonusesDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.HelpDialogs.HelpEnemiesDialog" Collapsed="true">
+    <Position X="3.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAAAAAAACAAAACAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Content\HelpDialogs\HelpEnemiesDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.HelpDialogs.HelpInstructionsDialog" Collapsed="true">
+    <Position X="5.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAABAAAACAAAACAAAIAAAAAEAAAABAAAA=</HashCode>
+      <FileName>Content\HelpDialogs\HelpInstructionsDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.HelpDialogs.SpriteDescription" Collapsed="true">
+    <Position X="45.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgABAAAACAAAACEAAAABAIAAAAAABAAAA=</HashCode>
+      <FileName>Content\HelpDialogs\SpriteDescription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Properties.Resources" Collapsed="true">
+    <Position X="49" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIR7+iskIIH3GQUU4tABFAFAASBAAEDwAAAAADIEJOA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Munchies.Properties.Settings" Collapsed="true">
+    <Position X="49" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
