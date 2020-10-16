@@ -100,10 +100,9 @@ namespace Munchies
 		{
 			RemoveFromCollections();
 
-			if (Killed != null)
-				Killed(this, new EventArgs());
+            Killed?.Invoke(this, new EventArgs());
 
-			IsDead = true;
+            IsDead = true;
 		}
 
 		/// <summary>
@@ -381,9 +380,8 @@ namespace Munchies
 
 		internal void OnCollide(Sprite sprite2)
 		{
-			if (Collide != null)
-				Collide(sprite2);
-		}
+            Collide?.Invoke(sprite2);
+        }
 
 
 		// Image handling

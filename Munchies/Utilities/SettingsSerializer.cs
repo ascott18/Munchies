@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 
 namespace AndrewScott.SettingsSerializer
 {
@@ -109,7 +110,7 @@ namespace AndrewScott.SettingsSerializer
             formatter.Serialize(stream, Data);
             stream.Close();
 
-            if (WriteFile != null) WriteFile(Data);
+            WriteFile?.Invoke(Data);
         }
 
         /// <summary>
@@ -122,20 +123,25 @@ namespace AndrewScott.SettingsSerializer
             if (!fi.Directory.Exists)
                 Directory.CreateDirectory(fi.DirectoryName);
 
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                using Stream stream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
 
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
-
-            if (stream.Length == 0)
+                if (stream.Length == 0)
+                    Data = new SettingsData();
+                else
+                    Data = (SettingsData)formatter.Deserialize(stream);
+            }
+            catch
+            {
                 Data = new SettingsData();
-            else
-                Data = (SettingsData)formatter.Deserialize(stream);
-
-            stream.Close();
+                MessageBox.Show("There was an error reading your settings. Reverting to defaults.");
+            }
 
             IsLoaded = true;
 
-            if (ReadFile != null) ReadFile(Data);
+            ReadFile?.Invoke(Data);
         }
 
         /// <summary>

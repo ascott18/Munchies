@@ -26,9 +26,8 @@ namespace Munchies
 			{
 				Settings.SetSetting("ContentSize", value);
 
-				if (SizeSettingChanged != null)
-					SizeSettingChanged(null, new EventArgs());
-			}
+                SizeSettingChanged?.Invoke(null, new EventArgs());
+            }
 			get
 			{
 				Settings.DeclareDefault("ContentSize", new Size(640, 480));

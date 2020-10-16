@@ -127,8 +127,8 @@ namespace Munchies
 
 			Play();
 
-			if (Started != null) Started(this, new EventArgs());
-		}
+            Started?.Invoke(this, new EventArgs());
+        }
 
 		public bool HasEnded;
 		public event EventHandler Ended;
@@ -141,8 +141,8 @@ namespace Munchies
 
 			GameMode.HighestLevelAttained = Math.Max(GameMode.HighestLevelAttained, CurrentLevel.LevelNumber);
 
-			if (Ended != null) Ended(this, new EventArgs());
-		}
+            Ended?.Invoke(this, new EventArgs());
+        }
 
 		private void SpawnMelvin()
 		{
@@ -256,15 +256,14 @@ namespace Munchies
 			Draw(e.Graphics);
 
 
-			// Let interested listerners know that we just updated,
-			// and give them access to our Graphics object
-			// so that they can draw things if they need to.
-			if (Updated != null)
-				Updated(e.Graphics, GameTime, elapsedTime);
+            // Let interested listerners know that we just updated,
+            // and give them access to our Graphics object
+            // so that they can draw things if they need to.
+            Updated?.Invoke(e.Graphics, GameTime, elapsedTime);
 
 
-			// Update throttling
-			int ElapsedMS = (int)(timer.ElapsedMilliseconds - StartTimeMS + 0.5);
+            // Update throttling
+            int ElapsedMS = (int)(timer.ElapsedMilliseconds - StartTimeMS + 0.5);
 
 			if (ElapsedMS < BaseSleepTimeMS)
 				System.Threading.Thread.Sleep(BaseSleepTimeMS - ElapsedMS);
@@ -295,9 +294,8 @@ namespace Munchies
 
 			Invalidate();
 
-			if (OnPlay != null)
-				OnPlay(this, new EventArgs());
-		}
+            OnPlay?.Invoke(this, new EventArgs());
+        }
 
 		public event EventHandler OnPause;
 
@@ -311,10 +309,9 @@ namespace Munchies
 
 			Cursor.Show();
 
-			if (OnPause != null)
-				OnPause(this, new EventArgs());
+            OnPause?.Invoke(this, new EventArgs());
 
-			if (ShowGraphic)
+            if (ShowGraphic)
 				Updated += Game_Updated_Paused;
 		}
 
