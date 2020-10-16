@@ -170,7 +170,7 @@ namespace Munchies
 			parentMenu.DropDownItems[0].Text = "Off";
 		}
 
-		private static readonly Dictionary<String, Sound> Sounds = new Dictionary<String, Sound>();
+		private static readonly Dictionary<String, Sound> Sounds = new Dictionary<String, Sound>(StringComparer.OrdinalIgnoreCase);
 
 		internal static void PreloadAllSounds()
 		{

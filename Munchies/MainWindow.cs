@@ -12,8 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using System.Management;
-using AndrewScott.SettingsSerializer;
 using AndrewScott.SimpleCommandManager;
 
 namespace Munchies

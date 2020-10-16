@@ -1,18 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munchies", "Munchies\Munchies.csproj", "{C8EB6A08-8582-4147-986A-5B99CC34BAA4}"
 EndProject
-Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Installer", "Installer\Installer.isproj", "{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C8EB6A08-8582-4147-986A-5B99CC34BAA4} = {C8EB6A08-8582-4147-986A-5B99CC34BAA4}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsSerializer", "SettingsSerializer\SettingsSerializer.csproj", "{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCommandManager", "SimpleCommandManager\SimpleCommandManager.csproj", "{1F79AA76-713B-47F5-9683-E1C64827638D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Munchies.Core", "Munchies\Munchies.Core.csproj", "{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,38 +26,21 @@ Global
 		{C8EB6A08-8582-4147-986A-5B99CC34BAA4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8EB6A08-8582-4147-986A-5B99CC34BAA4}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{C8EB6A08-8582-4147-986A-5B99CC34BAA4}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.CD_ROM|Any CPU.Build.0 = CD_ROM
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.Debug|Any CPU.ActiveCfg = DVD-5
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.Debug|Any CPU.Build.0 = DVD-5
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.DVD-5|Any CPU.ActiveCfg = DVD-5
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.DVD-5|Any CPU.Build.0 = DVD-5
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.Release|Any CPU.ActiveCfg = SingleImage
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.Release|Any CPU.Build.0 = SingleImage
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.SingleImage|Any CPU.ActiveCfg = SingleImage
-		{710AFBDB-6F5F-4C76-BCC2-4154D1C55FEB}.SingleImage|Any CPU.Build.0 = SingleImage
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{C2A26D49-AD19-463A-8E36-8F9DB2FE31FB}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{1F79AA76-713B-47F5-9683-E1C64827638D}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{92605F9A-EE58-4D70-B4B2-C00BE4471BAF}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {286038F5-08FE-4D79-8B67-74F23A8A0350}
 	EndGlobalSection
 EndGlobal

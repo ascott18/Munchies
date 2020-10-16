@@ -42,6 +42,7 @@
             // 
             this.scorePanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.scorePanel.BackgroundImage = global::Munchies.Properties.Resources.ScoreBackground;
+            this.scorePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.scorePanel.Controls.Add(this.line1);
             this.scorePanel.Controls.Add(this.line2);
             this.scorePanel.Controls.Add(this.title);
@@ -94,7 +95,7 @@
             // ScoreContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = global::Munchies.Properties.Resources.BG1;
             this.Controls.Add(this.scorePanel);
             this.Name = "ScoreContainer";

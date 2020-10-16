@@ -40,6 +40,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackgroundImage = global::Munchies.Properties.Resources.Splash;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -91,8 +92,8 @@
             // 
             // TitleScreenContainer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            //this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Munchies.Properties.Resources.BG1;
             this.Controls.Add(this.panel1);
             this.Name = "TitleScreenContainer";
