@@ -14,6 +14,7 @@ namespace Munchies
 		public TitleScreenContainer()
 		{
 			InitializeComponent();
+			panel1.AutoCenterInParent();
 		}
 	}
 }

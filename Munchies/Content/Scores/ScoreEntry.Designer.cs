@@ -45,7 +45,7 @@
             this.rank.Location = new System.Drawing.Point(0, 1);
             this.rank.Margin = new System.Windows.Forms.Padding(0);
             this.rank.Name = "rank";
-            this.rank.Size = new System.Drawing.Size(29, 17);
+            this.rank.Size = new System.Drawing.Size(29, 15);
             this.rank.TabIndex = 3;
             this.rank.Text = "1.";
             this.rank.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -57,7 +57,7 @@
             this.points.Location = new System.Drawing.Point(32, 1);
             this.points.Margin = new System.Windows.Forms.Padding(0);
             this.points.Name = "points";
-            this.points.Size = new System.Drawing.Size(68, 17);
+            this.points.Size = new System.Drawing.Size(68, 15);
             this.points.TabIndex = 3;
             this.points.Text = "123";
             // 
@@ -72,7 +72,7 @@
             this.level.Location = new System.Drawing.Point(103, 1);
             this.level.Margin = new System.Windows.Forms.Padding(0);
             this.level.Name = "level";
-            this.level.Size = new System.Drawing.Size(54, 17);
+            this.level.Size = new System.Drawing.Size(54, 15);
             this.level.TabIndex = 3;
             this.level.Text = "1";
             // 
@@ -83,7 +83,7 @@
             this.name.Location = new System.Drawing.Point(159, 1);
             this.name.Margin = new System.Windows.Forms.Padding(0);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(123, 17);
+            this.name.Size = new System.Drawing.Size(123, 15);
             this.name.TabIndex = 3;
             this.name.Text = "Melvin";
             // 
@@ -97,7 +97,7 @@
             this.Controls.Add(this.points);
             this.Controls.Add(this.rank);
             this.Name = "ScoreEntry";
-            this.Size = new System.Drawing.Size(284, 18);
+            this.Size = new System.Drawing.Size(284, 16);
             ((System.ComponentModel.ISupportInitialize)(this.scoreBindingSource)).EndInit();
             this.ResumeLayout(false);
 

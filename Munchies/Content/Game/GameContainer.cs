@@ -14,9 +14,10 @@ namespace Munchies
 		public GameContainer()
 		{
 			InitializeComponent();
+			gameOverPicture.AutoCenterInParent();
 		}
 
-		private Game game;
+        private Game game;
 
 		public Game Game
 		{

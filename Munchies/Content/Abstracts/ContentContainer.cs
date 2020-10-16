@@ -20,5 +20,5 @@ namespace Munchies
 
 			SetStyle(ControlStyles.Selectable, false);
 		}
-	}
+    }
 }

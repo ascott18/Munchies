@@ -12,7 +12,6 @@ namespace Munchies
 	public partial class ScoreContainer : ContentContainer
 	{
 		private GameMode currentGameMode;
-
 		internal GameMode CurrentGameMode
 		{
 			get { return currentGameMode; }
@@ -70,6 +69,7 @@ namespace Munchies
 		public ScoreContainer()
 		{
 			InitializeComponent();
+			scorePanel.AutoCenterInParent();
 
 			scoreEntryTitleRow.rank.Text = "";
 			scoreEntryTitleRow.level.Text = "Level";
