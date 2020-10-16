@@ -19,17 +19,14 @@ The latest release of this software may be found at https://github.com/ascott18/
 Development
 ===========
 
-The main development environment for this project is Visual Studio 2012. The installer is created using [InstallShield LE for Visual Studio](http://learn.flexerasoftware.com/content/IS-EVAL-InstallShield-Limited-Edition-Visual-Studio)
-
+The main development environment for this project is Visual Studio 2019 + .NET Core 3.1. 
 
 Build
 -----
 
-Building should be done from within Visual Studio. The installer will fail to build unless the build configuration is set to `Release` or `Single Image`. Once built, the installer may be found at `\Installer\Installer\Express\SingleImage\DiskImages\Disk1\MunchiesSetup.exe`. Munchies.exe and requisite DLLs will be found in `\Munchies\bin\*\`
-
-
+The single-file binary is created with a simple `dotnet publish`.
 
 Libraries
 ---------
 
-In addition to two small libraries of my own creation (SimpleCommandManager and SettingsSerializer), Munchies uses [irrKlang by Ambiera](http://www.ambiera.com/irrklang/license.html).
+Munchies uses [irrKlang by Ambiera](http://www.ambiera.com/irrklang/license.html).

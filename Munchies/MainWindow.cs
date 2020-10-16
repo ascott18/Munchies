@@ -74,74 +74,74 @@ namespace Munchies
 
 		private void InitializeCommands()
 		{
-			// Common lambdas used by controls
-			Func<bool> NoGameInProgress = () => CurrentGame == null || CurrentGame.HasEnded;
+            // Common lambdas used by controls
+            bool NoGameInProgress() => CurrentGame?.HasEnded != false;
 
 
-			#region File
+            #region File
 
-			// New Game
-			Program.CommandManager.Add(new Command(
-				                           NewGame,
-				                           Keys.Control | Keys.N,
-				                           newGameToolStripMenuItem
-				                           )
+            // New Game
+            Program.CommandManager.Add(new Command(
+				NewGame,
+				Keys.Control | Keys.N,
+				newGameToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 			});
 
 			// Pause
 			Program.CommandManager.Add(new Command(
-				                           Pause,
-				                           Keys.Control | Keys.P,
-				                           pauseGameToolStripMenuItem
-				                           )
+				Pause,
+				Keys.Control | Keys.P,
+				pauseGameToolStripMenuItem
+			)
 			{
-				Enabled = () => CurrentGame != null && CurrentGame.Playing,
+				Enabled = () => CurrentGame?.Playing == true,
 			});
 
 			// Resume
 			Program.CommandManager.Add(new Command(
-				                           Play,
-				                           Keys.Control | Keys.R,
-				                           resumeGameToolStripMenuItem
-				                           )
+				Play,
+				Keys.Control | Keys.R,
+				resumeGameToolStripMenuItem
+			)
 			{
-				Enabled = () => CurrentGame != null && !CurrentGame.Playing && !CurrentGame.HasEnded,
+				Enabled = () => CurrentGame?.Playing == false && !CurrentGame.HasEnded,
 			});
 
 			// Toggle play/pause
 			Program.CommandManager.Add(new Command(
-				                           () => CurrentGame.TogglePlayPause(),
-				                           Keys.Space
-				                           )
+				() => CurrentGame.TogglePlayPause(),
+				Keys.Space
+			)
 			{
-				Enabled = () => CurrentGame != null && CurrentGame.HasStarted && !CurrentGame.HasEnded,
+				Enabled = () => CurrentGame?.HasStarted == true && !CurrentGame.HasEnded,
 			});
 			Program.CommandManager.Add(new Command(
-				                           () => CurrentGame.TogglePlayPause(),
-				                           Keys.Escape
-				                           )
+				() => CurrentGame.TogglePlayPause(),
+				Keys.Escape
+			)
 			{
-				Enabled = () => CurrentGame != null && CurrentGame.HasStarted && !CurrentGame.HasEnded,
+				Enabled = () => CurrentGame?.HasStarted == true && !CurrentGame.HasEnded,
 			});
 
 			// End Game
 			Program.CommandManager.Add(new Command(
-				                           () => CurrentGame.End(),
-				                           Keys.Control | Keys.E,
-				                           endGameToolStripMenuItem
-				                           )
+				() => CurrentGame.End(),
+				Keys.Control | Keys.E,
+				endGameToolStripMenuItem
+			)
 			{
-				Enabled = () => CurrentGame != null && CurrentGame.HasStarted && !CurrentGame.HasEnded,
+				Enabled = () => CurrentGame?.HasStarted == true && !CurrentGame.HasEnded,
 			});
 
 			// Quit
 			Program.CommandManager.Add(new Command(
-				                           Application.Exit,
-				                           Keys.Control | Keys.Q,
-				                           quitToolStripMenuItem
-				                           ));
+				Application.Exit,
+				Keys.Control | Keys.Q,
+				quitToolStripMenuItem
+			));
 
 			#endregion
 
@@ -150,15 +150,15 @@ namespace Munchies
 
 			// Music
 			Program.CommandManager.Add(new Command(
-				                           () =>
-				                           {
-					                           Program.Settings.SetSetting("MusicEnabled",
-					                                                       !(bool)Program.Settings.GetSetting("MusicEnabled"));
-					                           CheckMusicPlayingStatus();
-				                           },
-				                           Keys.Control | Keys.M,
-				                           musicToolStripMenuItem
-				                           )
+				() =>
+				{
+					Program.Settings.SetSetting("MusicEnabled",
+					                            !(bool)Program.Settings.GetSetting("MusicEnabled"));
+					CheckMusicPlayingStatus();
+				},
+				Keys.Control | Keys.M,
+				musicToolStripMenuItem
+			)
 			{
 				Checked = () => (bool)Program.Settings.GetSetting("MusicEnabled")
 			});
@@ -166,18 +166,18 @@ namespace Munchies
 
 			// Slow Food
 			Program.CommandManager.Add(new Command(
-				                           () => Program.Settings.SetSetting("FoodSpeed", Food.FoodSpeed.Slow),
-				                           slowFoodToolStripMenuItem
-				                           )
+				() => Program.Settings.SetSetting("FoodSpeed", Food.FoodSpeed.Slow),
+				slowFoodToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 				Checked = () => (Food.FoodSpeed)Program.Settings.GetSetting("FoodSpeed") == Food.FoodSpeed.Slow
 			});
 			// Fast Food
 			Program.CommandManager.Add(new Command(
-				                           () => Program.Settings.SetSetting("FoodSpeed", Food.FoodSpeed.Fast),
-				                           fastFoodToolStripMenuItem
-				                           )
+				() => Program.Settings.SetSetting("FoodSpeed", Food.FoodSpeed.Fast),
+				fastFoodToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 				Checked = () => (Food.FoodSpeed)Program.Settings.GetSetting("FoodSpeed") == Food.FoodSpeed.Fast
@@ -185,18 +185,18 @@ namespace Munchies
 
 			// Beginner
 			Program.CommandManager.Add(new Command(
-				                           () => GameMode.DifficultySetting = Game.GameDifficulty.Beginner,
-				                           beginnerToolStripMenuItem
-				                           )
+				() => GameMode.DifficultySetting = Game.GameDifficulty.Beginner,
+				beginnerToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 				Checked = () => GameMode.DifficultySetting == Game.GameDifficulty.Beginner
 			});
 			// Expert
 			Program.CommandManager.Add(new Command(
-				                           () => GameMode.DifficultySetting = Game.GameDifficulty.Expert,
-				                           expertToolStripMenuItem
-				                           )
+				() => GameMode.DifficultySetting = Game.GameDifficulty.Expert,
+				expertToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 				Checked = () => GameMode.DifficultySetting == Game.GameDifficulty.Expert
@@ -209,33 +209,33 @@ namespace Munchies
 
 			// Show Scores
 			Program.CommandManager.Add(new Command(
-				                           ShowScores,
-				                           showScoresToolStripMenuItem
-				                           )
+				ShowScores,
+				showScoresToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 			});
 
 			// Reset Scores
 			Program.CommandManager.Add(new Command(
-				                           () =>
-				                           {
-					                           var dialog = new ScoreResetConfirmDialog();
+				() =>
+				{
+					var dialog = new ScoreResetConfirmDialog();
 
-					                           if (dialog.ShowDialog(this) == DialogResult.OK)
-						                           ShowScores();
-				                           },
-				                           resetScoresToolStripMenuItem
-				                           )
+					if (dialog.ShowDialog(this) == DialogResult.OK)
+						ShowScores();
+				},
+				resetScoresToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 			});
 
 			// A command that handles the entire Scores menu so that it will be disabled while in a game.
 			Program.CommandManager.Add(new Command(
-				                           () => { },
-				                           scoreToolStripMenuItem
-				                           )
+				() => { },
+				scoreToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 			});
@@ -253,19 +253,20 @@ namespace Munchies
 				int levelNumberRef = levelNumber;
 
 
-				// Create the menu item for the level
-				ToolStripMenuItem menuItem = new ToolStripMenuItem();
+                // Create the menu item for the level
+                ToolStripMenuItem menuItem = new ToolStripMenuItem
+                {
+                    Text = levelNumber.ToString()
+                };
 
-				menuItem.Text = levelNumber.ToString();
-
-				levelToolStripMenuItem.DropDownItems.Add(menuItem);
+                levelToolStripMenuItem.DropDownItems.Add(menuItem);
 
 
 				// Create the command handler for the level
 				Program.CommandManager.Add(new Command(
-					                           () => GameMode.GameModeFromSettings.StartingLevel = levelNumberRef,
-					                           menuItem
-					                           )
+					() => GameMode.GameModeFromSettings.StartingLevel = levelNumberRef,
+					menuItem
+				)
 				{
 					Checked = () => GameMode.GameModeFromSettings.StartingLevel == levelNumberRef,
 					Enabled = () => NoGameInProgress() && GameMode.GameModeFromSettings.HighestLevelAttained >= levelNumberRef,
@@ -274,9 +275,9 @@ namespace Munchies
 
 			// A command that handles the entire Level menu so that it will be disabled while in a game.
 			Program.CommandManager.Add(new Command(
-				                           () => { },
-				                           levelToolStripMenuItem
-				                           )
+				() => { },
+				levelToolStripMenuItem
+			)
 			{
 				Enabled = NoGameInProgress,
 			});
@@ -323,19 +324,20 @@ namespace Munchies
 					// Accessing foreach variables within closures is bad.
 					var res = resolution;
 
-					// Create the tooltip items for each resolution
-					ToolStripMenuItem menuItem = new ToolStripMenuItem();
+                    // Create the tooltip items for each resolution
+                    ToolStripMenuItem menuItem = new ToolStripMenuItem
+                    {
+                        Text = string.Format("{0}x{1}", resolution.Width, resolution.Height)
+                    };
 
-					menuItem.Text = string.Format("{0}x{1}", resolution.Width, resolution.Height);
-
-					windowToolStripMenuItem.DropDownItems.Add(menuItem);
+                    windowToolStripMenuItem.DropDownItems.Add(menuItem);
 
 
 					// Create the command handler for the resolution.
 					Program.CommandManager.Add(new Command(
-						                           () => Program.ContentSizeSetting = res,
-						                           menuItem
-						                           )
+						() => Program.ContentSizeSetting = res,
+						menuItem
+					)
 					{
 						Checked = () => Program.ContentSizeSetting == res,
 						Enabled = NoGameInProgress,
@@ -344,9 +346,9 @@ namespace Munchies
 
 				// A command that handles the entire Window menu so that it will be disabled while in a game.
 				Program.CommandManager.Add(new Command(
-					                           () => { },
-					                           windowToolStripMenuItem
-					                           )
+					() => { },
+					windowToolStripMenuItem
+				)
 				{
 					Enabled = NoGameInProgress,
 				});
@@ -359,23 +361,23 @@ namespace Munchies
 
 			//Instructions
 			Program.CommandManager.Add(new Command(
-				                           () => new HelpDialogs.HelpInstructionsDialog().ShowDialog(this),
-				                           instructionsToolStripMenuItem));
+				() => new HelpDialogs.HelpInstructionsDialog().ShowDialog(this),
+				instructionsToolStripMenuItem));
 
 			//Enemies
 			Program.CommandManager.Add(new Command(
-				                           () => new HelpDialogs.HelpEnemiesDialog().ShowDialog(this),
-				                           enemiesToolStripMenuItem));
+				() => new HelpDialogs.HelpEnemiesDialog().ShowDialog(this),
+				enemiesToolStripMenuItem));
 
 			//Bonuses
 			Program.CommandManager.Add(new Command(
-				                           () => new HelpDialogs.HelpBonusesDialog().ShowDialog(this),
-				                           bonusesToolStripMenuItem));
+				() => new HelpDialogs.HelpBonusesDialog().ShowDialog(this),
+				bonusesToolStripMenuItem));
 
 			//About
 			Program.CommandManager.Add(new Command(
-				                           () => new HelpDialogs.HelpAboutDialog().ShowDialog(this),
-				                           aboutToolStripMenuItem));
+				() => new HelpDialogs.HelpAboutDialog().ShowDialog(this),
+				aboutToolStripMenuItem));
 
 			#endregion
 		}
@@ -469,7 +471,7 @@ namespace Munchies
 		/// </summary>
 		public void Play()
 		{
-			if (CurrentGame != null) CurrentGame.Play();
+			CurrentGame?.Play();
 		}
 
 		/// <summary>
@@ -477,7 +479,7 @@ namespace Munchies
 		/// </summary>
 		public void Pause()
 		{
-			if (CurrentGame != null) CurrentGame.Pause(true);
+			CurrentGame?.Pause(true);
 		}
 
 		private void currentGame_OnPlay(object sender, EventArgs e)
@@ -512,10 +514,12 @@ namespace Munchies
 
 				AudioManager.GetSound("Munchies.Resources.Sounds.hiScore.ogg").Play();
 
-				HighScoreDialog dialog = new HighScoreDialog(game.GameMode, score);
-				dialog.Location = new Point(0, 0);
+                HighScoreDialog dialog = new HighScoreDialog(game.GameMode, score)
+                {
+                    Location = new Point(0, 0)
+                };
 
-				dialog.ShowDialog(this);
+                dialog.ShowDialog(this);
 
 				ShowScores(score);
 			}
@@ -544,8 +548,7 @@ namespace Munchies
 			Music.SingleInstanceMode = true;
 
 			if ((bool)Program.Settings.GetSetting("MusicEnabled")
-			    && CurrentGame != null
-			    && CurrentGame.HasStarted)
+                && CurrentGame?.HasStarted == true)
 			{
 				if (CurrentGame.Playing)
 				{
@@ -603,35 +606,10 @@ namespace Munchies
 		/// </summary>
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
-			if (Program.CommandManager.ProcessCmdKey(ref msg, keyData))
+			if (Program.CommandManager.ProcessCmdKey(keyData))
 				return true;
 
 			return base.ProcessCmdKey(ref msg, keyData);
-		}
-	}
-
-	public static class SpawnRandomizer
-	{
-		private static readonly Random random = new Random();
-
-		/// <summary>
-		///     Given an array of integers where each integer represents the proportion to the sum of the array that that index
-		///     should be chosen, pick an index and return it.
-		/// </summary>
-		/// <param name="chances">The integer array that contains the proportions at which each index should be chosen.</param>
-		/// <returns>The index of the array that has been chosen.</returns>
-		public static int PickSpawn(int[] chances)
-		{
-			int rnd = random.Next(chances.Sum());
-
-			int runningSum = 0;
-			for (int index = 0; index < chances.Length; index++)
-			{
-				runningSum += chances[index];
-				if (runningSum > rnd)
-					return index;
-			}
-			return 0;
 		}
 	}
 }

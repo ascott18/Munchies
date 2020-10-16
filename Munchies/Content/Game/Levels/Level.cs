@@ -31,7 +31,7 @@ namespace Munchies
 		public bool PeaIsActive;
 		public readonly Image BackgroundImage;
 
-		public Level(Game game, int levelNumber, bool isDesert)
+		protected Level(Game game, int levelNumber, bool isDesert)
 		{
 			Game = game;
 			LevelNumber = levelNumber;
@@ -44,20 +44,18 @@ namespace Munchies
 
 		internal bool IsNextLevelDesert()
 		{
-			return (LevelNumber % 5 == 0 && !IsDesert);
+			return LevelNumber % 5 == 0 && !IsDesert;
 		}
 
 		internal virtual void Update(double gameTime, double elapsedTime)
 		{
-			if (IsFinished)
-			{
-				if (Game.Melvin.Location.X >= LevelExit.Location.X
-				    && Game.Melvin.Location.Y >= LevelExit.Location.Y)
-				{
-					TriggerNextLevel();
-				}
-			}
-		}
+            if (IsFinished
+                && Game.Melvin.Location.X >= LevelExit.Location.X
+                && Game.Melvin.Location.Y >= LevelExit.Location.Y)
+            {
+                TriggerNextLevel();
+            }
+        }
 
 		private void TriggerNextLevel()
 		{

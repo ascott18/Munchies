@@ -127,7 +127,7 @@ namespace Munchies
 
 			Play();
 
-            Started?.Invoke(this, new EventArgs());
+            Started?.Invoke(this, EventArgs.Empty);
         }
 
 		public bool HasEnded;
@@ -141,7 +141,7 @@ namespace Munchies
 
 			GameMode.HighestLevelAttained = Math.Max(GameMode.HighestLevelAttained, CurrentLevel.LevelNumber);
 
-            Ended?.Invoke(this, new EventArgs());
+            Ended?.Invoke(this, EventArgs.Empty);
         }
 
 		private void SpawnMelvin()
@@ -213,7 +213,7 @@ namespace Munchies
 
 
 				// Draw string to the image.
-				g.DrawString(text, stringFont, Brushes.Black, new PointF(Padding / 2, (result.Size - stringSize).Height / 2 + 1));
+				g.DrawString(text, stringFont, Brushes.Black, new PointF(Padding / 2, ((result.Size - stringSize).Height / 2) + 1));
 			}
 
 			statusDisplays[text] = result;
@@ -294,7 +294,7 @@ namespace Munchies
 
 			Invalidate();
 
-            OnPlay?.Invoke(this, new EventArgs());
+            OnPlay?.Invoke(this, EventArgs.Empty);
         }
 
 		public event EventHandler OnPause;
@@ -309,7 +309,7 @@ namespace Munchies
 
 			Cursor.Show();
 
-            OnPause?.Invoke(this, new EventArgs());
+            OnPause?.Invoke(this, EventArgs.Empty);
 
             if (ShowGraphic)
 				Updated += Game_Updated_Paused;

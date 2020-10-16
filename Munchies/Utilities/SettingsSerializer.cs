@@ -90,7 +90,7 @@ namespace AndrewScott.SettingsSerializer
         /// Creates a new <c>Settings</c> to manage a file and a set of data.
         /// </summary>
         /// <param name="fileName">The name (and path) of the file that will be read to and written from. </param>
-        /// <param name="readNow"><c>True</c> if the file should be read immediately. 
+        /// <param name="readNow"><c>True</c> if the file should be read immediately.
         ///     <c>False</c> if the file will be read manually later using <c>Settings.ReadFromFile()</c></param>
         public Settings(string fileName, bool readNow)
         {

@@ -14,7 +14,7 @@ namespace Munchies
 	/// </summary>
 	public abstract partial class ContentContainer : UserControl
 	{
-		public ContentContainer()
+		protected ContentContainer()
 		{
 			InitializeComponent();
 

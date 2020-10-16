@@ -15,11 +15,11 @@ namespace AndrewScott.SimpleCommandManager
     /// </summary>
     public class CommandManager : List<Command>
     {
-        public bool ProcessCmdKey(ref Message msg, Keys keyData)
+        public bool ProcessCmdKey(Keys keyData)
         {
             bool processed = false;
 
-            foreach (Command command in this.Where(c => 
+            foreach (Command command in this.Where(c =>
                 (keyData == c.Keys)
                 && (c.Enabled == null || c.Enabled())
             ))
@@ -53,9 +53,8 @@ namespace AndrewScott.SimpleCommandManager
 
         private Func<bool> enabled;
         /// <summary>
-        /// Function that will be called to determine if the command should be triggered.
-        /// 
-        /// This controls both key command behavior and menu item enabled state.
+        /// <para>Function that will be called to determine if the command should be triggered.</para>
+        /// <para>This controls both key command behavior and menu item enabled state.</para>
         /// </summary>
         public Func<bool> Enabled
         {

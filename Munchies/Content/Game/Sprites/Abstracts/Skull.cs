@@ -12,7 +12,7 @@ namespace Munchies
 		public string SkullImageName = "";
 		protected bool IsSpawning = true;
 
-		public Skull(Level levelInstance)
+		protected Skull(Level levelInstance)
 			: base(levelInstance)
 		{
 		}

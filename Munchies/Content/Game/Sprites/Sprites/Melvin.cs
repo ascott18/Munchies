@@ -156,12 +156,13 @@ namespace Munchies
 			{
 				Peas--;
 
-				Pea pea = new Pea(level);
+                Pea pea = new Pea(level)
+                {
+                    Pepper = Pepper,
+                    Salt = Salt
+                };
 
-				pea.Pepper = Pepper;
-				pea.Salt = Salt;
-
-				pea.Update_SetYToMelvinY(this);
+                pea.Update_SetYToMelvinY(this);
 
 				if (FacingDirection == "L")
 				{
@@ -220,15 +221,17 @@ namespace Munchies
 				int state = AnimationState.GetState(DeathStartTime, gameTime, 7 + 1, 70) + 1;
 
 
-				if (state <= 7)
-					MelvinImageName = string.Format("MelvinD{0}", state);
-				else
-				{
-					if (Game.CurrentLevel is DessertLevel)
-						Game.TriggerNextLevelTransition();
-					Kill();
-				}
-			}
+                if (state <= 7)
+                {
+                    MelvinImageName = $"MelvinD{state}";
+                }
+                else
+                {
+                    if (Game.CurrentLevel is DessertLevel)
+                        Game.TriggerNextLevelTransition();
+                    Kill();
+                }
+            }
 			else
 			{
 				// Adjust Melvin's velocity based on cursor movement
@@ -260,7 +263,7 @@ namespace Munchies
 				{
 					int MelvinState = AnimationState.GetState(gameTime, 4, 40) + 1;
 
-					MelvinImageName = string.Format("Melvin{0}{1}", FacingDirection, MelvinState);
+					MelvinImageName = $"Melvin{FacingDirection}{MelvinState}";
 				}
 			}
 
@@ -319,7 +322,7 @@ namespace Munchies
 			{
 				// Butter Shield
 				int shieldFrame = AnimationState.GetState(Game.GameTime, 2, 70) + 1;
-				string shieldImage = string.Format("Shield{0}", (shieldFrame) + ((ButterStage - 1) * 2));
+				string shieldImage = string.Format("Shield{0}", shieldFrame + ((ButterStage - 1) * 2));
 
 				Image image = Images[shieldImage];
 
@@ -332,8 +335,7 @@ namespace Munchies
                 graphics.DrawImage(Images[shieldImage], (int)Location.X - 4, (int)Location.Y - 4, 
                     40 * game.ScaleFactor1DX, 40 * game.ScaleFactor1DY);
 #else
-				graphics.DrawImage(Images[shieldImage], (int)Location.X - 4, (int)Location.Y - 4,
-				                   40, 40);
+				graphics.DrawImage(Images[shieldImage], (int)Location.X - 4, (int)Location.Y - 4, 40, 40);
 #endif
 			}
 		}

@@ -8,7 +8,7 @@ namespace Munchies
 {
 	internal abstract class Enemy : Sprite
 	{
-		public Enemy(Level levelInstance)
+		protected Enemy(Level levelInstance)
 			: base(levelInstance)
 		{
 		}

@@ -12,7 +12,7 @@ namespace Munchies
 
 		public static int MinimumLevel = 1;
 
-		public Utensil(Level levelInstance)
+		protected Utensil(Level levelInstance)
 			: base(levelInstance)
 		{
 			AudioManager.GetSound("Munchies.Resources.Sounds.RedAlert.ogg").Play();

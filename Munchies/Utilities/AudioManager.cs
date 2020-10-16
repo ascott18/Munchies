@@ -125,7 +125,7 @@ namespace Munchies
 
 			volumeLevelMax = maxVolume;
 
-			Program.Settings.DeclareDefault("SoundVolume", volumeLevelMax / 2 + 1);
+			Program.Settings.DeclareDefault("SoundVolume", (volumeLevelMax / 2) + 1);
 
 			Volume = (int)Program.Settings.GetSetting("SoundVolume") / (float)volumeLevelMax;
 
@@ -138,13 +138,14 @@ namespace Munchies
 		{
 			for (int i = 0; i <= volumeLevelMax; i++)
 			{
-				ToolStripMenuItem Item = new ToolStripMenuItem();
+                ToolStripMenuItem Item = new ToolStripMenuItem
+                {
+                    Size = new System.Drawing.Size(91, 22),
+                    Text = i.ToString(),
+                    ShortcutKeyDisplayString = "Ctrl+" + i
+                };
 
-				Item.Size = new System.Drawing.Size(91, 22);
-				Item.Text = i.ToString();
-				Item.ShortcutKeyDisplayString = "Ctrl+" + i;
-
-				parentMenu.DropDownItems.Add(Item);
+                parentMenu.DropDownItems.Add(Item);
 
 				// Needed to pass a unique value to each lambda
 				// (otherwise, all of them use the max value of the iteration)
@@ -179,7 +180,7 @@ namespace Munchies
 
 			foreach (string resourceName in thisExe.GetManifestResourceNames())
 			{
-				if (resourceName.EndsWith(@".ogg") || resourceName.EndsWith(@".mod"))
+				if (resourceName.EndsWith(".ogg") || resourceName.EndsWith(".mod"))
 					LoadSound(resourceName);
 			}
 		}

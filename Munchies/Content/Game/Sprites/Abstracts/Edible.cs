@@ -8,7 +8,7 @@ namespace Munchies
 {
 	internal abstract class Edible : Sprite
 	{
-		public Edible(Level levelInstance)
+		protected Edible(Level levelInstance)
 			: base(levelInstance)
 		{
 		}

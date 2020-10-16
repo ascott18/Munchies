@@ -65,32 +65,29 @@ namespace Munchies
 			Image result = new Bitmap(Width, Height);
 
 			// Compose the image that we will drawn
-			using (Graphics g = Graphics.FromImage(result))
-			{
-				// Draw the background to the image
-				using (Bitmap sourceImage = (Bitmap)Properties.Resources.ResourceManager.GetObject("Status"))
-				using (Bitmap source = new Bitmap(sourceImage))
-				{
-					// Determine and create the images that make up the background
-					Image leftImage = source.Clone(
-						new Rectangle(0, 0, SideWidth, Height), source.PixelFormat);
+			using Graphics g = Graphics.FromImage(result);
+            using Bitmap sourceImage = (Bitmap)Properties.Resources.ResourceManager.GetObject("Status");
+            using Bitmap source = new Bitmap(sourceImage);
 
-					Image rightImage = source.Clone(
-						new Rectangle(sourceImage.Size.Width - SideWidth, 0, SideWidth, Height),
-						source.PixelFormat);
+			// Draw the background to the image:
+			// Determine and create the images that make up the background
+			Image leftImage = source.Clone(
+                new Rectangle(0, 0, SideWidth, Height), source.PixelFormat);
 
-					Image centerStrip = source.Clone(
-						new Rectangle(SideWidth + 1, 0, 1, Height), source.PixelFormat);
+            Image rightImage = source.Clone(
+                new Rectangle(sourceImage.Size.Width - SideWidth, 0, SideWidth, Height),
+                source.PixelFormat);
 
-					// Draw the left and right sides
-					g.DrawImage(leftImage, 0, 0);
-					g.DrawImage(rightImage, result.Size.Width - SideWidth, 0);
+            Image centerStrip = source.Clone(
+                new Rectangle(SideWidth + 1, 0, 1, Height), source.PixelFormat);
 
-					// Draw the middle
-					for (int i = SideWidth; i < result.Size.Width - SideWidth; i++)
-						g.DrawImage(centerStrip, i, 0);
-				}
-			}
+            // Draw the left and right sides
+            g.DrawImage(leftImage, 0, 0);
+            g.DrawImage(rightImage, result.Size.Width - SideWidth, 0);
+
+            // Draw the middle
+            for (int i = SideWidth; i < result.Size.Width - SideWidth; i++)
+                g.DrawImage(centerStrip, i, 0);
 
 			return result;
 		}

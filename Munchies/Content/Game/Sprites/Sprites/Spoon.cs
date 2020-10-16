@@ -41,7 +41,7 @@ namespace Munchies
 		public override void Update(double gameTime, double elapsedTime)
 		{
 			if (LastPoisonKilledTime < gameTime - 0.2 &&
-			    (poison == null || poison.IsDead))
+			    (poison?.IsDead != false))
 			{
 				SpawnPoison();
 			}

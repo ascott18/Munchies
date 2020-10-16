@@ -17,7 +17,7 @@ namespace Munchies
 			Fast,
 		}
 
-		public Food(Level levelInstance, int foodID)
+		protected Food(Level levelInstance, int foodID)
 			: base(levelInstance)
 		{
 			ImageName = string.Format("Food{0}", ((foodID - 1) % MAX_FOOD_ID) + 1);

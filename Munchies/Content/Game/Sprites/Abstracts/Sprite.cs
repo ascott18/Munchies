@@ -39,7 +39,7 @@ namespace Munchies
 		///     This ctor should only be used for sprites that are tied to a specific level. (Don't create Melvin using it).
 		/// </summary>
 		/// <param name="levelInstance">The level that the sprite is being created for</param>
-		public Sprite(Level levelInstance)
+		protected Sprite(Level levelInstance)
 		{
 			Level = levelInstance;
 			levelInstance.LevelSprites.Add(this);
@@ -57,7 +57,7 @@ namespace Munchies
 		///     (Melvin).
 		/// </summary>
 		/// <param name="gameInstance">The game that the sprite is being created for</param>
-		public Sprite(Game gameInstance)
+		protected Sprite(Game gameInstance)
 		{
 			Game = gameInstance;
 
@@ -100,7 +100,7 @@ namespace Munchies
 		{
 			RemoveFromCollections();
 
-            Killed?.Invoke(this, new EventArgs());
+            Killed?.Invoke(this, EventArgs.Empty);
 
             IsDead = true;
 		}
@@ -205,23 +205,31 @@ namespace Munchies
 
 		public void Update_WrapAround_LeftRight()
 		{
-			if (Location.X + Size.Width < 0)
-				// Left edge wraparound
-				Location.X = Game.Size.Width - 0.1f;
-			else if (Location.X > Game.Size.Width)
-				// Right edge wraparound
-				Location.X = -Size.Width + 0.1f;
-		}
+            if (Location.X + Size.Width < 0)
+            {
+                // Left edge wraparound
+                Location.X = Game.Size.Width - 0.1f;
+            }
+            else if (Location.X > Game.Size.Width)
+            {
+                // Right edge wraparound
+                Location.X = -Size.Width + 0.1f;
+            }
+        }
 
 		public void Update_WrapAround_TopBottom()
 		{
-			if (Location.Y + Size.Height < 0)
-				// Top edge wraparound
-				Location.Y = Game.Size.Height - 0.1f;
-			else if (Location.Y > Game.Size.Height)
-				// Bottom edge wraparound
-				Location.Y = -Size.Height + 0.1f;
-		}
+            if (Location.Y + Size.Height < 0)
+            {
+                // Top edge wraparound
+                Location.Y = Game.Size.Height - 0.1f;
+            }
+            else if (Location.Y > Game.Size.Height)
+            {
+                // Bottom edge wraparound
+                Location.Y = -Size.Height + 0.1f;
+            }
+        }
 
 		/// <summary>
 		///     Update method that causes the sprite to veer away from Melvin when it is near him.
@@ -247,18 +255,26 @@ namespace Munchies
 
 			if (Distance < proximity)
 			{
-				if (Game.Melvin.Location.X + Game.Melvin.Size.Width > Location.X + Size.Width)
-					// The fast food is to the left of Melvin
-					Velocity.X = Limit(Velocity.X - Delta, -MaxVelocityX, MaxVelocityX);
-				else
-					Velocity.X = Limit(Velocity.X + Delta, -MaxVelocityX, MaxVelocityX);
+                if (Game.Melvin.Location.X + Game.Melvin.Size.Width > Location.X + Size.Width)
+                {
+                    // The fast food is to the left of Melvin
+                    Velocity.X = Limit(Velocity.X - Delta, -MaxVelocityX, MaxVelocityX);
+                }
+                else
+                {
+                    Velocity.X = Limit(Velocity.X + Delta, -MaxVelocityX, MaxVelocityX);
+                }
 
-				if (Game.Melvin.Location.Y + Game.Melvin.Size.Height > Location.Y + Size.Height)
-					// The fast food is to the left of Melvin
-					Velocity.Y = Limit(Velocity.Y - Delta, -MaxVelocityY, MaxVelocityY);
-				else
-					Velocity.Y = Limit(Velocity.Y + Delta, -MaxVelocityY, MaxVelocityY);
-			}
+                if (Game.Melvin.Location.Y + Game.Melvin.Size.Height > Location.Y + Size.Height)
+                {
+                    // The fast food is to the left of Melvin
+                    Velocity.Y = Limit(Velocity.Y - Delta, -MaxVelocityY, MaxVelocityY);
+                }
+                else
+                {
+                    Velocity.Y = Limit(Velocity.Y + Delta, -MaxVelocityY, MaxVelocityY);
+                }
+            }
 		}
 
 		public void Update_VelocityTowardsMelvin(float MaxVelocity, float maxVariation)
@@ -286,8 +302,10 @@ namespace Munchies
 			    || Location.Y + Size.Height < 0
 			    || Location.Y > Game.Size.Height
 				)
-				Kill();
-		}
+            {
+                Kill();
+            }
+        }
 
 		// Miscellaneous positioning/velocity
 		public void SetLoc_CenterOfGame()

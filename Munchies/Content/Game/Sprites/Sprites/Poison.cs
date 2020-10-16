@@ -26,7 +26,7 @@ namespace Munchies
 
 			Melvin melvin = levelInstance.Game.Melvin;
 
-			Velocity.Y = Math.Min(-200, -200 - (Location.Y - melvin.Location.Y) * 1.1f);
+			Velocity.Y = Math.Min(-200, -200 - ((Location.Y - melvin.Location.Y) * 1.1f));
 			Velocity.X = Limit(melvin.Location.X - Location.X, -250, 250);
 		}
 

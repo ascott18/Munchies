@@ -48,10 +48,12 @@ namespace Munchies
 				// Clear the highlight of all entries (we are either
 				// changing the highlight, or removing it)
 				if (value == null || highlightedScore != null)
-					foreach (ScoreEntry entry in Entries)
+                {
+                    foreach (ScoreEntry entry in Entries)
 						entry.Highlighted = false;
+                }
 
-				highlightedScore = value;
+                highlightedScore = value;
 
 				if (highlightedScore != null)
 				{

@@ -8,7 +8,7 @@ namespace Munchies
 {
 	internal abstract class Treat : Edible
 	{
-		public Treat(Level levelInstance)
+		protected Treat(Level levelInstance)
 			: base(levelInstance)
 		{
 			MaxVelocityX = 175;

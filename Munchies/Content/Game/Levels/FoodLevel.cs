@@ -15,17 +15,17 @@ namespace Munchies
 		{
 			// Added 0.5 to these values for nearest-int rounding
 
-			totalNumFoodToSpawn = (int)(20 + (levelNumber / 2) * game.ScaleFactor2D + 0.5);
+			totalNumFoodToSpawn = (int)(20 + ((levelNumber / 2) * game.ScaleFactor2D) + 0.5);
 
 			if (LevelNumber <= 4)
 				totalNumSkullsToSpawn = 2 + LevelNumber;
 			else
 				totalNumSkullsToSpawn = 6 + (LevelNumber / 5);
 
-			totalNumSkullsToSpawn = (int)(totalNumSkullsToSpawn * game.ScaleFactor2D + 0.5);
+			totalNumSkullsToSpawn = (int)((totalNumSkullsToSpawn * game.ScaleFactor2D) + 0.5);
 
-			maxNumSimultaneousSkulls = (int)(6 * game.ScaleFactor2D + 0.5);
-			maxNumSimultaneousFood = (int)(7 * game.ScaleFactor2D + 0.5);
+			maxNumSimultaneousSkulls = (int)((6 * game.ScaleFactor2D) + 0.5);
+			maxNumSimultaneousFood = (int)((7 * game.ScaleFactor2D) + 0.5);
 
 			for (int i = 0; i < maxNumSimultaneousFood; i++)
 			{
@@ -187,52 +187,35 @@ namespace Munchies
 
 			if (rnd < ChanceOfSpawnNow)
 			{
-				Treat spawn;
-
-				switch (SpawnRandomizer.PickSpawn(new[]
-				{
+                Treat spawn = (SpawnRandomizer.PickSpawn(new[] {
 					// 0 Desert
 					60,
 
 					// 1 Peas (spawn chance increased below 10 peas)
-					LevelSprites.OfType<Peas>().Any() ? 0 : 30 + Math.Max(0, 30 - Game.Melvin.Peas * 3), 
+					LevelSprites.OfType<Peas>().Any() ? 0 : 30 + Math.Max(0, 30 - (Game.Melvin.Peas * 3)),
 
 					// 2 Butter
-					Game.Melvin.ButterStage > 0 || LevelSprites.OfType<Butter>().Any() ? 0 : 15, 
+					Game.Melvin.ButterStage > 0 || LevelSprites.OfType<Butter>().Any() ? 0 : 15,
 
 					// 3 Salt
-					Game.Melvin.Salt || LevelSprites.OfType<Salt>().Any() ? 0 : 10, 
+					Game.Melvin.Salt || LevelSprites.OfType<Salt>().Any() ? 0 : 10,
 
 					// 4 Pepper
-					Game.Melvin.Pepper || LevelSprites.OfType<Pepper>().Any() ? 0 : 10, 
+					Game.Melvin.Pepper || LevelSprites.OfType<Pepper>().Any() ? 0 : 10,
 
 					// 5 Coffee
 					3
-				}))
-				{
-					case 0:
-						spawn = new Dessert(this);
-						break;
-					case 1:
-						spawn = new Peas(this);
-						break;
-					case 2:
-						spawn = new Butter(this);
-						break;
-					case 3:
-						spawn = new Salt(this);
-						break;
-					case 4:
-						spawn = new Pepper(this);
-						break;
-					case 5:
-						spawn = new Coffee(this);
-						break;
-					default:
-						throw new Exception("Unhandled switch case in determining spawn type");
-				}
-
-				spawn.Velocity.Y = 0;
+                })) switch
+                {
+                    0 => new Dessert(this),
+                    1 => new Peas(this),
+                    2 => new Butter(this),
+                    3 => new Salt(this),
+                    4 => new Pepper(this),
+                    5 => new Coffee(this),
+                    _ => throw new Exception("Unhandled switch case in determining spawn type"),
+                };
+                spawn.Velocity.Y = 0;
 				spawn.Location.Y = Random.Next((int)(Game.Size.Height - spawn.Size.Height));
 
 				if (Random.Next(2) == 0)

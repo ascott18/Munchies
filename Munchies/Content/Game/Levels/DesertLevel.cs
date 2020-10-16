@@ -39,30 +39,19 @@ namespace Munchies
 
 			if (rnd < ChanceOfSpawnNow)
 			{
-				Sprite spawn;
-
-				switch (SpawnRandomizer.PickSpawn(new[]
+                Sprite spawn = (SpawnRandomizer.PickSpawn(new[] 
 				{
-					Math.Max(0, 95 - (int)(gameTime - LevelStartTime)), // 0 Desert
+                    Math.Max(0, 95 - (int)(gameTime - LevelStartTime)), // 0 Desert
 					Math.Max(5, 20 - (int)(gameTime - LevelStartTime)), // 1 Peas
 					10 + (int)(gameTime - LevelStartTime) // 2 PlainSkull
-				}))
-				{
-					case 0:
-						spawn = new Dessert(this);
-						break;
-					case 1:
-						spawn = new Peas(this);
-						break;
-					case 2:
-						spawn = new DessertLevelPlainSkull(this);
-						break;
-					default:
-						throw new Exception("Unhandled switch case in determining spawn type");
-				}
-
-
-				spawn.Velocity.X = 0;
+				})) switch
+                {
+                    0 => new Dessert(this),
+                    1 => new Peas(this),
+                    2 => new DessertLevelPlainSkull(this),
+                    _ => throw new Exception("Unhandled switch case in determining spawn type"),
+                };
+                spawn.Velocity.X = 0;
 				spawn.Velocity.Y = Random.Next(80, (int)spawn.MaxVelocityY);
 
 				spawn.Location.X = Random.Next((int)(Game.Size.Width - spawn.Size.Width));

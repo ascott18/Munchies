@@ -8,7 +8,7 @@ namespace Munchies
 {
 	internal abstract class PlainSkull : Skull
 	{
-		public PlainSkull(Level levelInstance)
+		protected PlainSkull(Level levelInstance)
 			: base(levelInstance)
 		{
 			SkullImageName = "Skull{0}";
