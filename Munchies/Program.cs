@@ -85,7 +85,9 @@ namespace Munchies
 
 				sw.WriteLine("### Crash ###");
 				sw.WriteLine(ex.ToString());
-				sw.Close();
+				Console.WriteLine(ex.ToString());
+				
+				sw.Dispose();
 			}
 			finally
 			{
