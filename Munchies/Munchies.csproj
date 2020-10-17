@@ -15,7 +15,7 @@
     <ResourceLanguages>en</ResourceLanguages>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <PublishTrimmed>true</PublishTrimmed>
-    <TrimMode>link</TrimMode>>
+    <TrimMode>link</TrimMode>
 
     <Title>Munchies</Title>
     <Product>Munchies</Product>
@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="./**/*.ogg;./**/*.mod" >
+    <EmbeddedResource Include="./**/*.ogg" >
     </EmbeddedResource>
   </ItemGroup>
 
