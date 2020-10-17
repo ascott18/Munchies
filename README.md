@@ -19,14 +19,9 @@ The latest release of this software may be found at https://github.com/ascott18/
 Development
 ===========
 
-The main development environment for this project is Visual Studio 2019 + .NET Core 3.1. 
+The main development environment for this project is Visual Studio 2019 + .NET 5. 
 
 Build
 -----
 
 The single-file binary is created with a simple `dotnet publish`.
-
-Libraries
----------
-
-Munchies uses [irrKlang by Ambiera](http://www.ambiera.com/irrklang/license.html).
