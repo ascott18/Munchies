@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
-namespace AndrewScott.SettingsSerializer
+namespace Munchies
 {
     /// <summary>
     /// Represents a set of settings that will be stored and retrieved.

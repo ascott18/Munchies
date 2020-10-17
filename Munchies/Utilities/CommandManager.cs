@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AndrewScott.SimpleCommandManager
+namespace Munchies
 {
     /// <summary>
     /// A simple class that manages commands and menus for an application.

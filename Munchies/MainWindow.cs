@@ -12,7 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using AndrewScott.SimpleCommandManager;
 
 namespace Munchies
 {
@@ -396,8 +395,9 @@ namespace Munchies
 			// Show the title screen 
 			ContentContainer = ContentContainers.First(c => c is TitleScreenContainer);
 
-			Program.Settings.DeclareDefault("MusicEnabled", false);
+			Program.Settings.DeclareDefault("MusicEnabled", true);
 			Program.Settings.DeclareDefault("FoodSpeed", Food.FoodSpeed.Fast);
+			Program.Settings.DeclareDefault("SoundVolume", 3);
 
 			// Restore the maximized state of the game from the last time it was open.
 			Program.Settings.DeclareDefault("Maximized", false);
@@ -406,21 +406,61 @@ namespace Munchies
 			FormClosing += MainWindow_FormClosing;
 
 			// Initialize the audio manager
-			AudioManager.Initialize(7);
-			AudioManager.InitializeVolumeMenu(soundToolStripMenuItem);
+			AudioManager.Initialize();
+			AudioManager.Volume = (int)Program.Settings.GetSetting("SoundVolume") / (float)volumeLevelMax;
+			InitializeVolumeMenu();
 		}
+
+		private const int volumeLevelMax = 7;
 
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			// Record the window state in the settings so that it may be restored
 			// the next time that the program is opened.
 			Program.Settings.SetSetting("Maximized", WindowState == FormWindowState.Maximized);
+			Application.Exit();
+		}
+
+		private void InitializeVolumeMenu()
+		{
+			for (int i = 0; i <= volumeLevelMax; i++)
+			{
+				ToolStripMenuItem Item = new ToolStripMenuItem
+				{
+					Size = new System.Drawing.Size(91, 22),
+					Text = i.ToString(),
+					ShortcutKeyDisplayString = "Ctrl+" + i
+				};
+
+				soundToolStripMenuItem.DropDownItems.Add(Item);
+
+				// Needed to pass a unique value to each lambda
+				// (otherwise, all of them use the max value of the iteration)
+				int thisSoundLevel = i;
+
+				Program.CommandManager.Add(new Command(
+					() =>
+					{
+						Program.Settings.SetSetting("SoundVolume", thisSoundLevel);
+						AudioManager.Volume = thisSoundLevel / (float)volumeLevelMax;
+						AudioManager.GetSound("Munchies.Resources.Sounds.exitSound.ogg").Play();
+					},
+					i < 10 ? Keys.Control | Keys.D0 + i : Keys.None,
+					Item
+				)
+				{
+					Checked = () => (int)Program.Settings.GetSetting("SoundVolume") == thisSoundLevel
+				});
+			}
+
+			// Special handling for the first volume setting.
+			soundToolStripMenuItem.DropDownItems[0].Text = "Off";
 		}
 
 		#endregion
 
 
-		# region Game Management
+		#region Game Management
 
 		private Game currentGame;
 
@@ -544,29 +584,29 @@ namespace Munchies
 		/// </summary>
 		public void CheckMusicPlayingStatus()
 		{
-			AudioManager.Sound Music = AudioManager.GetSound("Munchies.Resources.Sounds.Music.mod");
-			Music.SingleInstanceMode = true;
+            var music = AudioManager.GetSound("Munchies.Resources.Sounds.Music.ogg");
+			music.Loop = true;
 
-			if ((bool)Program.Settings.GetSetting("MusicEnabled")
-                && CurrentGame?.HasStarted == true)
-			{
-				if (CurrentGame.Playing)
-				{
+            if ((bool)Program.Settings.GetSetting("MusicEnabled")
+                         && CurrentGame?.HasStarted == true)
+            {
+                if (CurrentGame.Playing)
+                {
 					// Play the music if the user has enabled it and the current game is in progress.
-					Music.PlayOrResumeLoop();
-				}
-				else
-				{
+					music.Play(true);
+                }
+                else
+                {
 					// Pauses the music if the game is paused
-					Music.Pause();
-				}
-			}
-			else
-			{
+					music.Pause();
+                }
+            }
+            else
+            {
 				// Stops the music if the game is not in progress or the user has disabled music.
-				Music.Stop();
-			}
-		}
+				music.Stop();
+            }
+        }
 
 
 		#region Scores

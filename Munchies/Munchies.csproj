@@ -14,8 +14,8 @@
     <DebugType>embedded</DebugType>
     <ResourceLanguages>en</ResourceLanguages>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-    <!--<PublishTrimmed>true</PublishTrimmed>
-    <TrimMode>link</TrimMode>-->
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>link</TrimMode>>
 
     <Title>Munchies</Title>
     <Product>Munchies</Product>
@@ -26,18 +26,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="./**/*.ogg;./**/*.mod">
+    <EmbeddedResource Include="./**/*.ogg;./**/*.mod" >
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="irrKlang.NET4">
-      <HintPath>irrKlang.NET4.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NAudio" Version="1.10.0" />
+    <PackageReference Include="NAudio.Vorbis" Version="1.2.0" />
       
     <PackageReference Include="Roslynator.Analyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>

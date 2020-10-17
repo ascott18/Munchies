@@ -5,8 +5,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
-using AndrewScott.SettingsSerializer;
-using AndrewScott.SimpleCommandManager;
 using System.Runtime.CompilerServices;
 using System.IO;
 
