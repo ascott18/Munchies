@@ -20,7 +20,7 @@
     <Title>Munchies</Title>
     <Product>Munchies</Product>
     <Copyright>2020</Copyright>
-    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionPrefix>2.0.1</VersionPrefix>
     
     <ApplicationIcon>Munchies.ico</ApplicationIcon>
   </PropertyGroup>
