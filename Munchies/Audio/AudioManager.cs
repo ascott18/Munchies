@@ -17,6 +17,7 @@ namespace Munchies
 
 		private readonly IWavePlayer outputDevice;
 		private readonly MixingSampleProvider mixer;
+		private readonly VolumeSampleProvider volumeProvider;
 
 		private AudioManager()
 		{
@@ -26,7 +27,8 @@ namespace Munchies
 			mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(24000, 2));
 			mixer.ReadFully = true;
             mixer.MixerInputEnded += Mixer_MixerInputEnded;
-			outputDevice.Init(mixer);
+			volumeProvider = new VolumeSampleProvider(mixer);
+			outputDevice.Init(volumeProvider);
 			outputDevice.Play();
 
 			Application.ApplicationExit += (s, e) => outputDevice.Dispose();
@@ -48,7 +50,7 @@ namespace Munchies
 			set
 			{
 				volume = value;
-				Instance.outputDevice.Volume = volume / 20f; // going to max volume on WSAPI is deafening.
+				Instance.volumeProvider.Volume = (float)Math.Pow(volume, 2);
 			}
 		}
 

@@ -407,6 +407,7 @@ namespace Munchies
 
 			// Initialize the audio manager
 			AudioManager.Initialize();
+			AudioManager.Volume = (int)Program.Settings.GetSetting("SoundVolume") / (float)volumeLevelMax;
 			InitializeVolumeMenu();
 		}
 
